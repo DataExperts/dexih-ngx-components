@@ -1,0 +1,58 @@
+<h2 *ngIf="!showIf" class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> {{loadMessage}}</h2>
+<div *ngIf="showIf" [@fadeInAnimation]='state'>
+    <div class="card">
+        <div class="card-header" *ngIf="showHeader">
+                <div class="d-flex flex-row">
+                    
+                    <span><i class="{{iconClass}}"></i><b>{{title}}</b></span>
+
+                    <div *ngIf="headerTemplate">
+                            <ng-template [ngTemplateOutlet]="headerTemplate">
+                            </ng-template>
+                        </div>
+    
+                    <button type="button" class="ml-auto close" (click)="doClose()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>    
+
+
+                <div *ngIf="showFilter" class="pull-right" role="menu">
+                    <label class="input"> <i class="icon-append fa fa-search"></i>
+                            <input [ngModel]="filter" [formControl]="filterControl" type="text" placeholder="Filter the items">
+                    </label>
+                </div>
+
+
+            </div>
+            <div class="card-body" [ngClass]="{'px-0 py-0': !padding}">
+
+                <div class="widget-body-toolbar" *ngIf="showToolbar">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5>{{subTitle}}</h5>
+                            <ng-template [ngTemplateOutlet]="subtitleTemplate">
+                            </ng-template>
+                        </div>
+                        <div class="col-sm-6 pull-right">
+                            <div class="pull-right">
+                            <ng-template [ngTemplateOutlet]="actionsTemplate">
+                            </ng-template>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-body-toolbar" *ngIf="showSubHeader">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ng-template [ngTemplateOutlet]="subHeaderTemplate">
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-content></ng-content>
+            </div>
+    </div>
+</div>

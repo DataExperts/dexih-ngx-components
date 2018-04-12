@@ -1,0 +1,72 @@
+<div class="row ">
+    <div class="col">
+        <dexih-widget title="Inputs" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+
+            <form>
+                <form-input placeholder="No labels"></form-input>
+                <form-input label="input label" note="a note to describe the input" placeholder="input something"></form-input>
+                <form-input label="input label" note="a note to describe the input" placeholder="input with icon" iconClass="fa fa-pie-chart"></form-input>
+                <form-input label="input with error" note="a note to describe the input" errors="this is invalid" placeholder="input something"
+                    iconClass="fa fa-pie-chart"></form-input>
+                <form-input label="input with sub label" subLabel="the label" placeholder="input something" iconClass="fa fa-pie-chart"></form-input>
+                <form-input label="input disabled" [disabled]="true" placeholder="input something" iconClass="fa fa-pie-chart" value="can't change this text"></form-input>
+
+                <div class="row">
+                    <div class="col">
+                        <form-input label="side by side" placeholder="input something" iconClass="fa fa-pie-chart"></form-input>
+                    </div>
+                    <div class="col">
+                        <form-input label="side by side" placeholder="input something" iconClass="fa fa-pie-chart"></form-input>
+                    </div>
+                </div>
+
+            </form>
+
+        </dexih-widget>
+    </div>
+
+    <div class="col">
+        <dexih-widget title="Text Areas" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-textarea label="edit shown" [isHidden]="false" value="a **bold** item"></form-textarea>
+                <form-textarea label="edit hidden" [isHidden]="true" value="a **bold** item"></form-textarea>
+                <form-textarea label="with errors" [isHidden]="true" value="a **bold** item" errors="the error"></form-textarea>
+                <form-textarea label="with note" [isHidden]="true" value="a **bold** item" note="a note describing the textarea"></form-textarea>
+
+            </form>
+
+        </dexih-widget>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <dexih-widget title="Dropdowns" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-select label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                <form-select label="Select with key/value" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key'></form-select>
+                <form-select label="Select with parent/child" [items]="
+                    [
+                    {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
+                    {category: 'category2', items: ['cat2 item1', 'cat2 item2', 'cat2 item3']},
+                    {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
+                    ]" parentName='category' childItems='items'></form-select>
+
+                <form-select label="Select with grand parent/child" [items]="
+                [{region: 'region1', categories: [
+                {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
+                {category: 'category2', items: ['cat2 item1', 'cat2 item2', 'cat2 item3']},
+                {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
+                ]},
+                {region: 'region2', categories: [
+                {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
+                {category: 'category2', items: ['cat2 item1', 'cat2 item2', 'cat2 item3']},
+                {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
+                ]}]" grandParentName='region' parentName='category' grandChildItems='items' childItems='categories'></form-select>
+            </form>
+
+            <form-select label="Select with note" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key' note='this describes the selection'></form-select>
+            <form-select label="Select with error" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key' errors='this has errors'></form-select>
+        </dexih-widget>
+    </div>
+</div>

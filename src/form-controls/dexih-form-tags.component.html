@@ -1,0 +1,17 @@
+<label class="label">{{label}}
+    <ng-content></ng-content>
+</label>
+ <label *ngIf="subLabel">{{subLabel}}</label>
+
+ <label class="input" [ngClass]="{'state-error' : errors, 'state-success': !errors && isDirty}">
+<div class="bootstrap-tagsinput">
+    <span *ngFor="let item of value" class="tag label-info" >{{item}}<span (click)="remove(item)" data-role="remove"></span></span> 
+    <input style="border: none; display: inline; min-width:100px; max-width:100%" [(ngModel)]="tag" (keydown)="keydownEvent($event)" type="text" placeholder="">
+</div>
+</label>
+<em *ngIf="errors" class="invalid">
+    {{ errors }}
+</em>
+<div *ngIf="note" class="note">
+    {{note}}
+</div>

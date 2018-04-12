@@ -1,0 +1,13 @@
+<label *ngIf="label" class="label">{{label}}
+    <ng-content></ng-content>
+</label>
+<label class="input" [ngClass]="{'state-error' : errors}">
+    <i class="icon-append fa fa-calendar" style="cursor: pointer;"></i>
+    <input type="date" [(ngModel)]="value"  (ngModelChange)="hasChanged($event)" />
+</label>
+<em *ngIf="errors" class="invalid">
+    {{errors}}
+</em>
+<div *ngIf="note" class="note">
+    {{note}}
+</div>

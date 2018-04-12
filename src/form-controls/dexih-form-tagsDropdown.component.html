@@ -1,0 +1,26 @@
+<label class="label">{{label}}
+    <ng-content></ng-content>
+</label>
+<label *ngIf="subLabel">{{subLabel}}</label>
+
+<label  class="input" [ngClass]="{'state-error' : errors, 'state-success': !errors && isDirty}">
+    <div #dropdown dropdown [autoClose]="false" class="bootstrap-tagsinput">
+            <a dropdownToggle (click)="dropdown.autoClose=false" class="tag btn btn-primary">Add</a>
+            <ul *dropdownMenu  class="dropdown-menu scrollable-menu" role="menu">
+                <li *ngFor="let item of sortedItems | filter: itemName: filterString" [ngClass]="{'active': selectedItem == item}" class="scrollable-item" >
+                    <a  (click)="selectItem(item)" [title]="itemTitle && childItem ? childItem[itemTitle] : ''"> {{itemName && item ? item[itemName] : item}}</a>
+                </li>
+            </ul>
+    
+        <span *ngFor="let item of labels; let i = index" class="tag label-info">
+            {{item}}
+            <span (click)="remove(i)" data-role="remove"></span>
+        </span>
+    </div>
+</label>
+<em *ngIf="errors" class="invalid">
+    {{ errors }}
+</em>
+<div *ngIf="note" class="note">
+    {{note}}
+</div>

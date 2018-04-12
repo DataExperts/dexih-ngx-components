@@ -1,0 +1,42 @@
+<label class="label">{{label}}
+    <a (click)="selectAllDays()">(All)</a> <a (click)="selectNoDays()">(None)</a><a (click)="selectWeekend()">(Weekend)</a><a (click)="selectWeekDays()">(Weekdays)</a>
+    <ng-content></ng-content>
+</label>
+<div class="no-padding input-group">
+    <fieldset>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[0]" (ngModelChange)="hasChanged($event)" name="checkSunday"><i></i>
+            <label for="inlineCheckbox2">Sunday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[1]" (ngModelChange)="hasChanged($event)" name="checkMonday"><i></i>
+            <label for="inlineCheckbox3">Monday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[2]" (ngModelChange)="hasChanged($event)" name="checkTuesday"><i></i>
+            <label for="inlineCheckbox3">Tuesday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[3]" (ngModelChange)="hasChanged($event)"  name="checkWednesday" ><i></i>
+            <label for="inlineCheckbox3">Wednesday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[4]" (ngModelChange)="hasChanged($event)" name="checkThursday"><i></i>
+            <label for="inlineCheckbox3">Thursday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[5]" (ngModelChange)="hasChanged($event)" name="checkFriday"><i></i>
+            <label for="inlineCheckbox3">Friday </label>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="daysOfWeek[6]" (ngModelChange)="hasChanged($event)" name="checkSaturday" /><i></i>
+            <label for="inlineCheckbox2">Saturday </label>
+        </label>
+    </fieldset>
+</div>
+<em *ngIf="errors" class="invalid">
+    {{ errors }}
+</em>
+<div *ngIf="note" class="note">
+    {{note}}
+</div>
