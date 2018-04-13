@@ -1,17 +1,34 @@
-<label class="label">{{label}}
-    <ng-content></ng-content>
-</label>
- <label *ngIf="subLabel">{{subLabel}}</label>
+<div class="form-group">
+    <label *ngIf="label" [for]="id">{{label}}
+        <ng-content></ng-content>
+    </label>
 
- <label class="input" [ngClass]="{'state-error' : errors, 'state-success': !errors && isDirty}">
-<div class="bootstrap-tagsinput">
-    <span *ngFor="let item of value" class="tag label-info" >{{item}}<span (click)="remove(item)" data-role="remove"></span></span> 
-    <input style="border: none; display: inline; min-width:100px; max-width:100%" [(ngModel)]="tag" (keydown)="keydownEvent($event)" type="text" placeholder="">
-</div>
-</label>
-<em *ngIf="errors" class="invalid">
-    {{ errors }}
-</em>
-<div *ngIf="note" class="note">
-    {{note}}
+    <small *ngIf="subLabel" class="form-text">{{subLabel}}</small>
+
+    <div class="border rounded" [ngClass]="{'border-danger': errors, 'border-success': !errors && isDirty}">
+        <div class="input-group">
+            <div *ngFor="let item of value" class="border rounded bg-light m-1">
+                {{item}}
+                <button (click)="remove(item)" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input class="form-control border-0" [id]="id" [disabled]="disabled" [(ngModel)]="tag" (keydown)="keydownEvent($event)" [type]="type"
+                [placeholder]="placeholder ? placeholder : ''" [attr.maxlength]="maxlength" [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}"
+            />
+            <div *ngIf="iconClass" class="input-group-append">
+                <span class="input-group-text">
+                    <i *ngIf="iconClass" class="icon-append {{iconClass}}"></i>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="errors" class="d-block invalid-feedback">
+        {{ errors }}
+    </div>
+
+    <small *ngIf="note" class="form-text text-muted">
+        {{note}}
+    </small>
 </div>

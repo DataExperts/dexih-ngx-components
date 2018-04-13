@@ -20,6 +20,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
     @Input() maxlength: number;
 
     isDirty = false;
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     tag: string;
 

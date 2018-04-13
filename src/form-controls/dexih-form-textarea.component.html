@@ -1,7 +1,7 @@
 <div class="form-group">
     <label *ngIf="label" [for]="id">
         {{label}}
-        <a *ngIf="!hideToggle" (click)='toggleState()'>&nbsp;({{isHidden == true ? 'Edit' : 'Hide'}})</a>
+        <a class="btn btn-outline-primary btn-sm" *ngIf="!hideToggle" (click)='toggleState()'>{{isHidden == true ? 'Edit' : 'Hide'}}</a>
         <ng-content></ng-content>
     </label>
     <div [@slideDown]='state'>

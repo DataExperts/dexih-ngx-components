@@ -1,11 +1,16 @@
-<label class="checkbox" [ngClass]="{'state-error' : errors, 'state-success': !errors && isDirty}">
-    <input [(ngModel)]="value" (ngModelChange)="hasChanged($event)" type="checkbox"/><i></i>
-    {{label}}
-    <ng-content></ng-content> 
-</label>
-<em *ngIf="errors" class="invalid">
-    {{ errors }}
-</em>
-<div *ngIf="note" class="note">
-    {{note}}
+<div class="form-group">
+    <div class="form-check" >
+        <input class="form-check-input" [id]="id" type="checkbox"  [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="hasChanged($event)" 
+            [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}" />
+        <label class="form-check-label" *ngIf="label" [for]="id">{{label}}
+            <ng-content></ng-content>
+        </label>
+        <div *ngIf="errors" class="invalid-feedback">
+            {{ errors }}
+        </div>
+    </div>
+
+    <small *ngIf="note" class="form-text text-muted">
+        {{note}}
+    </small>
 </div>

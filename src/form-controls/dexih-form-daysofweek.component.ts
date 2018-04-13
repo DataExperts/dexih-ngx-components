@@ -24,6 +24,7 @@ export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, After
 
     eDayOfWeek = eDayOfWeek;
     daysOfWeek = new Array<Boolean>(7);
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     onChange: any = () => { };
     onTouched: any = () => { };

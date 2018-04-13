@@ -8,6 +8,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DexihComponentsModule }  from 'dexih-ngx-components';
 
 import { AppComponent} from './app';
+import { RouterModule } from '@angular/router';
+
+const ROUTES = [
+  // HERE ROUTES DEFINITIONS
+];
 
 @NgModule({
   bootstrap: [
@@ -18,7 +23,11 @@ import { AppComponent} from './app';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(ROUTES),
     DexihComponentsModule
+  ],
+  exports: [
+    RouterModule
   ]
 })
 class AppModule {}

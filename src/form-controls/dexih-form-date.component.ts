@@ -18,6 +18,9 @@ export class DexihFormDateComponent implements ControlValueAccessor {
     @Input() value: string;
 
     dateValue: any;
+    isValidDate = false;
+
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     onChange: any = () => { };
     onTouched: any = () => { };
@@ -82,6 +85,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
             this.dateToValue();
         }
     }
+
 
     validate(c: FormControl): {[key: string]: any} {
         if (this.value) {

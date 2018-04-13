@@ -17,6 +17,8 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
     minutes: number;
     seconds: number;
 
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
+
     onChange: any = () => { };
     onTouched: any = () => { };
 

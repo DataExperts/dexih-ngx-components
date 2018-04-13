@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, EventEmitter, Output, HostListener, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, EventEmitter, Output, HostListener, ViewChild, OnChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
 
@@ -9,7 +9,7 @@ import { BsDropdownDirective } from 'ngx-bootstrap';
         { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormTagsDropdownComponent), multi: true },
     ]
 })
-export class DexihFormTagsDropdownComponent implements ControlValueAccessor {
+export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnChanges {
     @Input() label: string;
     @Input() note: string;
     @Input() placeholder: string;
@@ -30,6 +30,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor {
     isDirty = false;
 
     tag: string;
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     labels: string[] = [];
 
@@ -40,28 +41,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor {
 
     constructor() { }
 
-    hasChanged($event) {
-        this.onChange(this.value);
-        this.onTouched();
-        this.isDirty = true;
-    }
-
-    registerOnChange(fn) {
-        this.updateLabels();
-        this.onChange = fn;
-    }
-
-    registerOnTouched(fn) {
-        this.onTouched = fn;
-    }
-
-    writeValue(value) {
-        // if (value) {
-            this.value = value;
-        // }
-    }
-
-    updateLabels() {
+    ngOnChanges() {
         if (this.sortItems) {
             this.sortedItems = this.items.sort((a, b) => {
                 if (a[this.itemName] > b[this.itemName]) {
@@ -97,6 +77,26 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor {
         });
 
         this.writeValue(this.value);
+    }
+
+    hasChanged($event) {
+        this.onChange(this.value);
+        this.onTouched();
+        this.isDirty = true;
+    }
+
+    registerOnChange(fn) {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn) {
+        this.onTouched = fn;
+    }
+
+    writeValue(value) {
+        // if (value) {
+            this.value = value;
+        // }
     }
 
     selectItem(selectedItem: any) {

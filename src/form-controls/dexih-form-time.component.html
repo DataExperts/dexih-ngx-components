@@ -1,33 +1,32 @@
-<div style="width: 300">
-    <label class="label">{{label}}
+<div class="form-group">
+    <label *ngIf="label" [for]="id">{{label}}
         <ng-content></ng-content>
     </label>
-    <label class="input" [ngClass]="{'state-error' : errors}">
-        <div class="no-padding form-inline">
-        <div class="no-padding form-group ">
-            <div class="col-lg-3">
-        <input type="number" class="form-control input-sm" style="width:80px" [(ngModel)]="hours" (ngModelChange)="hasChanged($event)"  placeholder="HH" required max="23" min="0"  >
-        <label class="sronly">Hours</label> 
-        </div>
-        </div>
-        <div class="no-padding form-group">
-            <div class="col-lg-3">
-        <input type="number" class="form-control input-sm" style="width:80px" [(ngModel)]="minutes" (ngModelChange)="hasChanged($event)"  placeholder="MM" required max="59" min="0"  >
-            <label class="sronly">Minutes</label> 
+    <div class="input-group " [ngClass]="{'border-danger': errors, 'border-success': !errors && isDirty}">
+            <div class="w-19 m-1">
+                <input type="number" class="form-control"  [(ngModel)]="hours" (ngModelChange)="hasChanged($event)"
+                    [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}"
+                    placeholder="HH" required max="23" min="0">
+                <label class="mx-auto">Hours</label>
+            </div>
+            <div class="w-10 m-1">
+                <input type="number" class="form-control"  [(ngModel)]="minutes" (ngModelChange)="hasChanged($event)"
+                [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}"
+                    placeholder="MM" required max="59" min="0">
+                <label class="mx-auto">Min</label>
+            </div>
+            <div class="w-10 m-1">
+                <input type="number" class="form-control"  [(ngModel)]="seconds" (ngModelChange)="hasChanged($event)"
+                    [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}"
+                    placeholder="SS" required max="59" min="0">
+                <label class="mx-auto">Sec</label>
             </div>
         </div>
-        <div class="no-padding form-group">
-        <div class="col-lg-3">
-        <input type="number" class="form-control input-sm" style="width:80px" [(ngModel)]="seconds" (ngModelChange)="hasChanged($event)"  placeholder="SS" required max="59" min="0" >
-            <label class="sronly">Seconds</label> 
+
+        <div *ngIf="errors" class="invalid-feedback d-block">
+            {{ errors }}
         </div>
-        </div>
+        <small *ngIf="note" class="form-text text-muted">
+            {{note}}
+        </small>
     </div>
-    </label>
-    <em *ngIf="errors" class="invalid">
-        {{ errors }}
-    </em>
-    <div *ngIf="note" class="note">
-        {{note}}
-    </div>
-</div>

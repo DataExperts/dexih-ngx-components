@@ -44,7 +44,8 @@
         <dexih-widget title="Dropdowns" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
                 <form-select label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
-                <form-select label="Select with key/value" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key'></form-select>
+                <form-select label="Select with key/value" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]"
+                    itemName='name' itemKey='key'></form-select>
                 <form-select label="Select with parent/child" [items]="
                     [
                     {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
@@ -65,8 +66,125 @@
                 ]}]" grandParentName='region' parentName='category' grandChildItems='items' childItems='categories'></form-select>
             </form>
 
-            <form-select label="Select with note" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key' note='this describes the selection'></form-select>
-            <form-select label="Select with error" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name' itemKey='key' errors='this has errors'></form-select>
+            <form-select label="Select with note" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name'
+                itemKey='key' note='this describes the selection'></form-select>
+            <form-select label="Select with error" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name'
+                itemKey='key' errors='this has errors'></form-select>
+        </dexih-widget>
+    </div>
+
+    <div class="col">
+        <dexih-widget title="Checkboxes" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-checkbox></form-checkbox>
+                <form-checkbox label="Simple Checkbox"></form-checkbox>
+                <form-checkbox label="Checkbox with note" note="this describes the checkbox"></form-checkbox>
+                <form-checkbox label="Checkbox with error" errors="this checkbox has errors"></form-checkbox>
+            </form>
         </dexih-widget>
     </div>
 </div>
+
+<div class="row">
+    <div class="col">
+        <dexih-widget title="Date" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-date placeholder="input date"></form-date>
+                <form-date label="input label" note="a note to describe the date" placeholder="input date"></form-date>
+            </form>
+        </dexih-widget>
+    </div>
+
+    <div class="col">
+        <dexih-widget title="Day of week" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-daysofweek></form-daysofweek>
+                <form-daysofweek label="Select the days"></form-daysofweek>
+                <form-daysofweek label="With note" note="this is the note"></form-daysofweek>
+                <form-daysofweek label="Has errors" errors="this is the error"></form-daysofweek>
+            </form>
+        </dexih-widget>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <dexih-widget title="Tags" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-tags placeholder="input tags"></form-tags>
+                <form-tags label="input tags" [value]="['item1', 'item2']" placeholder="input tags"></form-tags>
+                <form-tags label="input tags" note="a note to describe the tags" placeholder="input tags"></form-tags>
+                <form-tags label="input errors" errors="the error message" placeholder="input tags"></form-tags>
+            </form>
+        </dexih-widget>
+    </div>
+
+    <div class="col">
+        <dexih-widget title="Tags DropDown" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <form-tags-dropdown placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
+                <form-tags-dropdown label="input tags" note="a note to describe the tags" placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
+                <form-tags-dropdown label="input tags" note="a note to describe the tags" placeholder="input tags" [items]="['item1', 'item2','item3']" [value]="['item1', 'item2']"></form-tags-dropdown>
+            </form>
+        </dexih-widget>
+    </div>
+</div>
+
+
+<div class="row">
+        <div class="col">
+            <dexih-widget title="Time" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+                <form>
+                    <form-time></form-time>
+                    <form-time label="time with label"></form-time>
+                    <form-time label="time with note" note="this time description"></form-time>
+                    <form-time label="time with error" errors="the time error"></form-time>
+                </form>
+            </dexih-widget>
+        </div>
+    
+        <div class="col">
+            <dexih-widget title="Buttons" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+                    <form>
+                        <dexih-button>Default</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart">With Icon</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart" title="the tool tip">With Tooltip</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart" [compact]="true">Compact</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart" [busy]="true">Busy</dexih-button>
+                        <dexih-button-apply></dexih-button-apply>
+                        <dexih-button-cancel></dexih-button-cancel>
+                        <dexih-button-delete></dexih-button-delete>
+                        <dexih-button-download></dexih-button-download>
+                        <dexih-button-edit></dexih-button-edit>
+                        <dexih-button-export></dexih-button-export>
+                        <dexih-button-history></dexih-button-history>
+                        <dexih-button-new></dexih-button-new>
+                        <dexih-button-open></dexih-button-open>
+                        <dexih-button-preview></dexih-button-preview>
+                        <dexih-button-private></dexih-button-private>
+                        <dexih-button-refresh></dexih-button-refresh>
+                        <dexih-button-save-local></dexih-button-save-local>
+                        <dexih-button-validate></dexih-button-validate>
+                        <dexih-button-view></dexih-button-view>
+
+                        <dexih-button-dropdown text="drop down">
+                            <a class="dropdown-item">item 1</a>
+                            <a class="dropdown-item">item 2</a>
+                            <a class="dropdown-item">item 3</a>
+                        </dexih-button-dropdown>
+
+                        <dexih-button-splitdropdown iconClass="fa fa-bar-chart" text="split">
+                                <a class="dropdown-item">item 1</a>
+                                <a class="dropdown-item">item 2</a>
+                                <a class="dropdown-item">item 3</a>
+                        </dexih-button-splitdropdown>
+
+                        <dexih-button-more>
+                                <a class="dropdown-item">item 1</a>
+                                <a class="dropdown-item">item 2</a>
+                                <a class="dropdown-item">item 3</a>
+                        </dexih-button-more>
+                    </form>
+                </dexih-widget>
+            </div>
+    </div>

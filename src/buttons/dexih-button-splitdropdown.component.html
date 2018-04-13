@@ -1,16 +1,15 @@
 <div dropdown class="btn-group">
-  <button (click)="onClick($event)" [disabled]="disabled" [ngClass]="['btn', 'btn-sm', buttonClass]" [title]="title">
+  <button type="button" (click)="onClick($event)" [disabled]="disabled" [ngClass]="['btn', 'btn-primary', buttonClass]" [title]="title">
     <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
     <i [class]="iconClass"></i>
-    <span class="hidden-sm hidden-xs">
+    <span class="d-none d-md-inline">
         &nbsp;{{text}}
     </span>
   </button>  
-  <button dropdownToggle [disabled]="disabled" [ngClass]="['btn', 'btn-sm', 'dropdown-toggle', buttonClass]" title="Options">
+  <button type="button" dropdownToggle [disabled]="disabled" [ngClass]="['btn', 'btn-primary', 'dropdown-toggle', buttonClass]" title="Options">
     <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
-    <i class="fa fa-caret-down"></i>
   </button>
-  <ul *dropdownMenu [ngClass]="['dropdown-menu']" [class.pull-right]="pullRight" >
+  <ul *dropdownMenu class="dropdown-menu" [class.pull-right]="pullRight" >
     <ng-content></ng-content>
   </ul>
 </div>

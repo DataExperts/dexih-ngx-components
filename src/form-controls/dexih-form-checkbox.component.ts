@@ -13,6 +13,7 @@ export class DexihFormCheckboxComponent implements ControlValueAccessor {
     @Input() value: boolean;
 
     isDirty = false;
+    id = 'input_' + Math.random().toString(36).substr(2, 9);
 
     onChange: any = () => { };
     onTouched: any = () => { };

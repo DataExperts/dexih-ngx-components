@@ -1,14 +1,12 @@
-<div dropdown class="btn-group">
-  <button dropdownToggle [disabled]="disabled" [ngClass]="['btn', 'btn-sm', 'dropdown-toggle', buttonClass]" [title]="title">
+<div class="btn-group" dropdown>
+  <button dropdownToggle type="button" [disabled]="disabled" [ngClass]="['btn', 'btn-primary', 'dropdown-toggle', buttonClass]" [title]="title">
     <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
     <i [class]="iconClass"></i>
-    <span class="hidden-sm hidden-xs">
-        &nbsp;{{text}}
+    <span *ngIf="!compact" [ngClass]="[autoCompact ? 'd-none d-md-inline' : '']">
+        &nbsp;{{text}}        
     </span>
-    <i class="fa fa-caret-down"></i>
   </button>
-  <ul *dropdownMenu [ngClass]="['dropdown-menu']" [class.pull-right]="pullRight" >
+  <ul *dropdownMenu class="dropdown-menu" [class.pull-right]="pullRight" >
     <ng-content></ng-content>
   </ul>
 </div>
-
