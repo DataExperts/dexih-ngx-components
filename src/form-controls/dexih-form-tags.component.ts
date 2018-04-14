@@ -18,6 +18,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
     @Input() type = 'text';
     @Input() subLabel: string;
     @Input() maxlength: number;
+    @Input() border = true;
 
     isDirty = false;
     id = 'input_' + Math.random().toString(36).substr(2, 9);

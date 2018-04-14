@@ -23,6 +23,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     @Input() itemKey;
     @Input() itemName;
     @Input() sortItems = false;
+    @Input() border = true;
 
     @ViewChild(BsDropdownDirective) dropdown: BsDropdownDirective;
     @ViewChild('dropdown') dropdownElement;

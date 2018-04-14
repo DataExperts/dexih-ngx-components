@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'form-input',
     templateUrl: 'dexih-form-input.component.html',
-    styleUrls: [],
+    styleUrls: ['./dexih-form.component.scss'],
     providers: [
         { provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => DexihFormInputComponent),
@@ -23,6 +23,7 @@ export class DexihFormInputComponent implements ControlValueAccessor {
     @Input() subLabel: string;
     @Input() maxlength: number;
     @Input() disabled = false;
+    @Input() border = true;
 
     @Output() keydown: EventEmitter<any> = new EventEmitter<any>();
 

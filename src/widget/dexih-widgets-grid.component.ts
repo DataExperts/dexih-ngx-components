@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'dexih-widget-group',
-    templateUrl: './dexih-widget-group.component.html'
+    selector: 'dexih-widgets-grid',
+    templateUrl: './dexih-widgets-grid.component.html'
 })
-export class DexihWidgetGroupComponent implements OnInit {
+export class DexihWidgetsGridComponent implements OnInit {
     @Input() public title: string;
 
     constructor() {

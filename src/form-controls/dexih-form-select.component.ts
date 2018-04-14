@@ -29,6 +29,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() enableTextEntry = false;
     @Input() textEntryNote = 'Enter a value';
     @Input() textValue = null;
+    @Input() border = true;
     @Input() sortItems = false;
     @Output() textValueChange = new EventEmitter();
 

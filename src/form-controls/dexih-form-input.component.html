@@ -1,4 +1,4 @@
-<div class="form-group">
+<div [ngClass]="{'form-group': border}">
     <label *ngIf="label" [for]="id">{{label}}
         <ng-content></ng-content>
     </label>
@@ -8,9 +8,9 @@
     <div class="input-group" >
         <input class="form-control" [id]="id" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="hasChanged($event)" (keydown)="keydownEvent($event)"
             [type]="type" [placeholder]="placeholder ? placeholder : ''" [attr.maxlength]="maxlength"
-            [ngClass]="{'is-invalid': errors, 'is-valid': !errors && isDirty}" />
+            [ngClass]="{'border-top-0 border-bottom-0 border-left-0 rounded-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}" />
         <div *ngIf="iconClass" class="input-group-append">
-            <span class="input-group-text">
+            <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}" >
                 <i *ngIf="iconClass" class="icon-append {{iconClass}}"></i>
             </span>
         </div>

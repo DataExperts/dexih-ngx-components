@@ -1,4 +1,4 @@
-<div class="row ">
+<dexih-widgets-grid>
     <div class="col">
         <dexih-widget title="Inputs" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
 
@@ -37,7 +37,7 @@
 
         </dexih-widget>
     </div>
-</div>
+</dexih-widgets-grid>
 
 <div class="row">
     <div class="col">
@@ -188,3 +188,29 @@
                 </dexih-widget>
             </div>
     </div>
+
+
+<div class="row">
+    <div class="col">
+        <dexih-widget title="Groups" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <form>
+                <div class="input-group">
+                    <form-input [border]="false" class="form-control p-0" placeholder="input 1" ></form-input>
+                    <form-select [border]="false" class="form-control p-0" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                    <form-input [border]="false" class="form-control p-0" placeholder="input icon" iconClass="fa fa-pie-chart" ></form-input>
+                </div>
+                <div class="input-group">
+                        <form-tags [border]="false" class="form-control p-0" placeholder="input 1" ></form-tags>
+                        <form-tags-dropdown [border]="false" class="form-control p-0" placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
+                    </div>
+                </form>
+        </dexih-widget>
+    </div>
+
+    <div class="col">
+        <dexih-widget title="" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+                <form>
+                </form>
+            </dexih-widget>
+        </div>
+</div>
