@@ -6,12 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { DexihComponentsModule }  from 'dexih-ngx-components';
+// import { DexihComponentsModule }  from 'dexih-ngx-components';
+import { DexihComponentsModule }  from '../src';
 
 import { AppComponent} from './app';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Route } from '@angular/router';
 
-const ROUTES = [
+const ROUTES: Route[] = [
   // HERE ROUTES DEFINITIONS
 ];
 

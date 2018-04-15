@@ -146,7 +146,7 @@
         <div class="col">
             <dexih-widget title="Buttons" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
                     <form>
-                        <dexih-button>Default</dexih-button>
+                        <dexih-button class="py-5">Default</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart">With Icon</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart" title="the tool tip">With Tooltip</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart" [compact]="true">Compact</dexih-button>
@@ -173,6 +173,12 @@
                             <a class="dropdown-item">item 3</a>
                         </dexih-button-dropdown>
 
+                        <dexih-button-dropdown text="align right" [pullRight]="true">
+                                <a class="dropdown-item">item 1</a>
+                                <a class="dropdown-item">item 2</a>
+                                <a class="dropdown-item">item 3</a>
+                            </dexih-button-dropdown>
+    
                         <dexih-button-splitdropdown iconClass="fa fa-bar-chart" text="split">
                                 <a class="dropdown-item">item 1</a>
                                 <a class="dropdown-item">item 2</a>
@@ -184,6 +190,37 @@
                                 <a class="dropdown-item">item 2</a>
                                 <a class="dropdown-item">item 3</a>
                         </dexih-button-more>
+
+                        <dexih-button-dropdown text="notification" [pullRight]="true">
+                        <div class="list-group" style="width: 400px;" >
+                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                                    <small>3 days ago</small>
+                                  </div>
+                                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                  <small>Donec id elit non mi porta.</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                                    <small class="text-muted">3 days ago</small>
+                                  </div>
+                                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                  <small class="text-muted">Donec id elit non mi porta.</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                  <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">List group item heading</h5>
+                                    <small class="text-muted">3 days ago</small>
+                                  </div>
+                                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                  <small class="text-muted">Donec id elit non mi porta.</small>
+                                </a>
+                              </div>
+                            </dexih-button-dropdown>
+
+
                     </form>
                 </dexih-widget>
             </div>
@@ -208,9 +245,59 @@
     </div>
 
     <div class="col">
-        <dexih-widget title="" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+        <dexih-widget 
+            title="header" 
+            [padding]="true" 
+            [showCloseButton]="true"
+            iconClass="fa fa-lg fa-fw fa-database">
+
                 <form>
                 </form>
             </dexih-widget>
         </div>
 </div>
+
+<div class="row">
+        <div class="col">
+            <dexih-widget title="Tabs" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+                <ng-template #header>
+                    <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                            </ul>
+                </ng-template>
+            </dexih-widget>
+        </div>
+    
+        <div class="col">
+            <dexih-widget 
+                title="pills" 
+                [padding]="true" 
+                [showCloseButton]="true"
+                iconClass="fa fa-lg fa-fw fa-database">
+                <ng-template #header>
+                    <ul class="nav nav-pills card-header-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                            </ul>
+                </ng-template>
+                    <form>
+                    </form>
+                </dexih-widget>
+            </div>
+    </div>
+
