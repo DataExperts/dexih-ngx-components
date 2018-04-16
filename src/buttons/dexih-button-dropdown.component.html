@@ -1,5 +1,5 @@
 <div class="btn-group" dropdown placement="bottom right">
-  <button dropdownToggle type="button" [disabled]="disabled" class="btn btn-primary" [ngClass]="{'dropdown-toggle': !hideCarrot, buttonClass: buttonClass}" [title]="title">
+  <button dropdownToggle type="button" [disabled]="disabled" class="btn {{buttonClass}}" [ngClass]="{'dropdown-toggle': !hideCarrot}" [title]="title">
     <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
     <i [class]="iconClass"></i>
     <span *ngIf="!compact" class="d-none d-md-inline">

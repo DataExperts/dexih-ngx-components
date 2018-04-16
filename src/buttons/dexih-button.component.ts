@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class DexihButtonComponent implements OnInit {
-    @Input() buttonClass = 'btn-default';
+    @Input() buttonClass = 'btn btn-primary';
     @Input() iconClass: string;
     @Input() title: string;
     @Input() routerLink: string;

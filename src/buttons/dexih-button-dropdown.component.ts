@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./dexih-button-dropdown.component.scss']
 })
 export class DexihButtonDropDownComponent implements OnInit {
-    @Input() buttonClass = '';
+    @Input() buttonClass = 'btn btn-primary';
     @Input() iconClass: string;
     @Input() title: string;
     @Input() disabled = false;
