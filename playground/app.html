@@ -146,13 +146,16 @@
         <div class="col">
             <dexih-widget title="Buttons" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
                     <form>
-                        <dexih-button class="py-5">Default</dexih-button>
+                        <dexih-button>Default</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart">With Icon</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart" badge="12">With Badge</dexih-button>
+                        <dexih-button iconClass="fa fa-bar-chart" badge="12" badgeClass="badge-danger" >Danger Badge</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart" title="the tool tip">With Tooltip</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart" [compact]="true">Compact</dexih-button>
                         <dexih-button iconClass="fa fa-bar-chart" [busy]="true">Busy</dexih-button>
                         <dexih-button-apply></dexih-button-apply>
                         <dexih-button-cancel></dexih-button-cancel>
+                        <dexih-button-close></dexih-button-close>
                         <dexih-button-delete></dexih-button-delete>
                         <dexih-button-download></dexih-button-download>
                         <dexih-button-edit></dexih-button-edit>
@@ -168,6 +171,18 @@
                         <dexih-button-view></dexih-button-view>
 
                         <dexih-button-dropdown text="drop down">
+                            <a class="dropdown-item">item 1</a>
+                            <a class="dropdown-item">item 2</a>
+                            <a class="dropdown-item">item 3</a>
+                        </dexih-button-dropdown>
+
+                        <dexih-button-dropdown text="drop down no carrot" [hideCarrot]="true">
+                            <a class="dropdown-item">item 1</a>
+                            <a class="dropdown-item">item 2</a>
+                            <a class="dropdown-item">item 3</a>
+                        </dexih-button-dropdown>
+
+                        <dexih-button-dropdown text="drop down badge" badge="12" badgeClass="badge-info" [hideCarrot]="true">
                             <a class="dropdown-item">item 1</a>
                             <a class="dropdown-item">item 2</a>
                             <a class="dropdown-item">item 3</a>

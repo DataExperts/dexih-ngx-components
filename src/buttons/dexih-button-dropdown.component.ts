@@ -13,6 +13,10 @@ export class DexihButtonDropDownComponent implements OnInit {
     @Input() busy = false;
     @Input() text = '';
     @Input() pullRight = false;
+    @Input() badge: string;
+    @Input() badgeClass = '';
+    @Input() hideCarrot = false;
+
   //  @Output() click = new EventEmitter<any>();
 
     constructor() { }

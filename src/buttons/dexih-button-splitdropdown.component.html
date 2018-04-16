@@ -5,6 +5,7 @@
     <span class="d-none d-md-inline">
         &nbsp;{{text}}
     </span>
+    <span *ngIf="badge" class="badge" [ngClass]="[badgeClass]">{{badge}}</span>
   </button>  
   <button type="button" dropdownToggle [disabled]="disabled" [ngClass]="['btn', 'btn-primary', 'dropdown-toggle', buttonClass]" title="Options">
     <i *ngIf="busy" class="fa fa-spin fa-cog"></i>

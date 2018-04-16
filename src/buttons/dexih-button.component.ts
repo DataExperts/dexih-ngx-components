@@ -7,15 +7,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class DexihButtonComponent implements OnInit {
     @Input() buttonClass = 'btn-default';
-    @Input() iconClass;
-    @Input() title;
-    @Input() routerLink;
-    @Input() queryParams;
+    @Input() iconClass: string;
+    @Input() title: string;
+    @Input() routerLink: string;
+    @Input() queryParams: string;
     @Input() disabled = false;
     @Input() busy = false;
     @Input() text = '';
     @Input() compact = false;
     @Input() autoCompact = true;
+    @Input() badge: string;
+    @Input() badgeClass = '';
 
     @Output() click = new EventEmitter();
 

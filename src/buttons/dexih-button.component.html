@@ -1,7 +1,10 @@
 <a [class.disabled]="disabled ? true : null" [routerLink]="routerLink" [queryParams]="queryParams" [ngClass]="['btn', 'btn-secondary', buttonClass]" [title]="title ? title : text">
-  <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
+  <i *ngIf="busy" class="fa fa-spin fa-spinner"></i>
+
   <i [class]="iconClass"></i>
   <span *ngIf="!compact" [ngClass]="[autoCompact ? 'd-none d-md-inline' : '']">
-      {{text}}<ng-content></ng-content>            
-  </span>
+      {{text}}
+      <ng-content></ng-content>            
+      <span *ngIf="badge" class="badge " [ngClass]="[badgeClass]">{{badge}}</span>
+    </span>
 </a>
