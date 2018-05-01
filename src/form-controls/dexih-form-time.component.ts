@@ -19,6 +19,8 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
 
+    isDirty = false;
+
     onChange: any = () => { };
     onTouched: any = () => { };
 
@@ -51,6 +53,7 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
         this.onChange(this.value);
         this.onTouched();
         this.validate();
+        this.isDirty = true;
     }
 
     registerOnChange(fn) {

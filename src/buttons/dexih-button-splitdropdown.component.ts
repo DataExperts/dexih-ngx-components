@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
+    moduleId: module.id,
     selector: 'dexih-button-splitdropdown',
     templateUrl: 'dexih-button-splitdropdown.component.html',
     styleUrls: ['./dexih-button-dropdown.component.scss']

@@ -16,6 +16,7 @@ export class DexihButtonDropDownComponent implements OnInit {
     @Input() badge: string;
     @Input() badgeClass = '';
     @Input() hideCarrot = false;
+    @Input() compact = false;
 
   //  @Output() click = new EventEmitter<any>();
 

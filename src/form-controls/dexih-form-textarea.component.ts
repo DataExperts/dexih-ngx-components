@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 @Component({
+    moduleId: module.id,
     selector: 'form-textarea',
     templateUrl: 'dexih-form-textarea.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormTextAreaComponent), multi: true }],
@@ -27,6 +28,7 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
     @Input() rows = 5;
     @Input() showMarkdown = false;
     @Input() disabled = false;
+    @Input() showPreview = true;
 
     state: string;
 

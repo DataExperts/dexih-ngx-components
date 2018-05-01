@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
 
 @Component({
+    moduleId: module.id,
     selector: 'form-tags-dropdown',
     templateUrl: 'dexih-form-tagsDropdown.component.html',
     providers: [
@@ -15,13 +16,13 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     @Input() placeholder: string;
     @Input() iconClass: string;
     @Input() errors: string;
-    @Input() value = [];
+    @Input() value: Array<string> = [];
     @Input() type = 'text';
     @Input() subLabel: string;
     @Input() maxlength: number;
     @Input() items: Array<any>;
     @Input() itemKey;
-    @Input() itemName;
+    @Input() itemName: string;
     @Input() sortItems = false;
     @Input() border = true;
 

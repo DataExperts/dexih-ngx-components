@@ -20,12 +20,9 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 })
 export class DexihWidgetComponent implements OnInit {
     @Input() public title: string;
-    @Input() public subTitle: string;
+    @Input() public subtitle: string;
     @Input() public iconClass: string;
     @Input() public showIf: any = true;
-    @Input() public showHeader: any = true;
-    @Input() public showToolbar: any = false;
-    @Input() public showSubHeader: any = false;
     @Input() public loadMessage = 'Loading...';
     @Input() public maxHeight: number;
     @Input() public showFilter = false;
@@ -36,10 +33,11 @@ export class DexihWidgetComponent implements OnInit {
 
     @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
-    @ContentChild('actions') actionsTemplate: TemplateRef<any>;
+    @ContentChild('tools') toolsTemplate: TemplateRef<any>;
     @ContentChild('header') headerTemplate: TemplateRef<any>;
     @ContentChild('subtitle') subtitleTemplate: TemplateRef<any>;
-    @ContentChild('subHeader') subHeaderTemplate: TemplateRef<any>;
+    @ContentChild('subheader') subheaderTemplate: TemplateRef<any>;
+    @ContentChild('footer') footerTemplate: TemplateRef<any>;
 
     filterControl = new FormControl();
     filter: string;

@@ -11,4 +11,8 @@ import { Component } from '@angular/core';
     public close() {
         alert('close click');
     }
+
+    public show(value) {
+      alert(value);
+    }
   }

@@ -30,9 +30,9 @@
                 </div>
             </label>
 
-            <div class="dropdown-header scrollable-menu-fixed p-1">
+            <div *ngIf="enableFilter" class="dropdown-header scrollable-menu-fixed p-1">
                 <div class="input-group">
-                    <input type="search" class="form-control" [formControl]="filterControl" placeholder="Filter list..." tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
+                    <input type="search" class="form-control" [formControl]="filterControl" placeholder="Filter list..." tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" style="width: 300px">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>

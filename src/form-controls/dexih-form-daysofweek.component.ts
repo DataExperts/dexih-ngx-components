@@ -52,7 +52,7 @@ export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, After
         this._changeDetectionRef.detectChanges();
     }
 
-    hasChanged($event) {
+    hasChanged($event: any) {
         let daysOfWeek = new Array<eDayOfWeek>();
         if (this.daysOfWeek[0]) { daysOfWeek.push(eDayOfWeek.Sunday); }
         if (this.daysOfWeek[1]) { daysOfWeek.push(eDayOfWeek.Monday); }
@@ -68,15 +68,15 @@ export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, After
         this.onTouched();
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: any) {
         if (value) {
             this.value = value;
         }

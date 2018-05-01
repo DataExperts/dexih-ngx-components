@@ -16,9 +16,12 @@ export class DexihFormDateComponent implements ControlValueAccessor {
     @Input() iconClass: string;
     @Input() errors: string;
     @Input() value: string;
+    @Input() disabled = false;
 
     dateValue: any;
     isValidDate = false;
+
+    isDirty = false;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
 
@@ -34,6 +37,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
 
         this.onChange(this.value);
         this.onTouched();
+        this.isDirty = true;
     }
 
     dateChanged($event) {

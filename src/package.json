@@ -1,6 +1,6 @@
 {
   "name": "dexih-ngx-components",
-  "version": "0.1.11-alpha",
+  "version": "0.1.21",
   "repository": {
     "type": "git",
     "url": "https://github.com/DataExperts/dexih-ngx-components"
@@ -21,10 +21,10 @@
   "jsnext:main": "dexih-ngx-components.js",
   "typings": "dexih-ngx-components.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
-    "@angular/router": "^4.0.0",
-    "@angular/animations": "^4.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "@angular/animations": "^5.0.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   }

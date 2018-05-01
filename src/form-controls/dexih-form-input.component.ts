@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'form-input',
-    templateUrl: 'dexih-form-input.component.html',
+    templateUrl: './dexih-form-input.component.html',
     styleUrls: ['./dexih-form.component.scss'],
     providers: [
         { provide: NG_VALUE_ACCESSOR,

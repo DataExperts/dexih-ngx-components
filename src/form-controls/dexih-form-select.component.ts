@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, OnDestroy, forwardRef, Input, Output,
     ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subscription } from 'rxjs/Rx';
 import { BsDropdownDirective } from 'ngx-bootstrap';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'form-select',
@@ -20,21 +20,23 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() grandParentName: string;
     @Input() childItems: string;
     @Input() grandChildItems: string;
-    @Input() itemKey;
-    @Input() itemName;
-    @Input() itemTitle;
+    @Input() itemKey: string;
+    @Input() itemName: string;
+    @Input() itemTitle: string;
     @Input() defaultItem: string; // item is added to the list when list is empty.
     @Input() allowNullSelect = false;
     @Input() selectNullMessage = 'Select nothing';
     @Input() enableTextEntry = false;
     @Input() textEntryNote = 'Enter a value';
-    @Input() textValue = null;
+    @Input() textValue: string = null;
     @Input() border = true;
     @Input() sortItems = false;
+    @Input() enableFilter = true;
     @Output() textValueChange = new EventEmitter();
 
+
     @ViewChild(BsDropdownDirective) dropdown: BsDropdownDirective;
-    @ViewChild('dropdown') dropdownElement;
+    @ViewChild('dropdown') dropdownElement: any;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
 
@@ -109,21 +111,21 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         if (this.manualSubscription) { this.manualSubscription.unsubscribe(); }
     }
 
-    hasChanged($event) {
+    hasChanged($event: any) {
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: any) {
         this.selectedItem = null;
         if (value) {
             this.value = value;
@@ -142,7 +144,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         }
         if (this.childItems) {
             this.items.forEach(item => {
-                let childItems = item[this.childItems];
+                let childItems = <Array<any>> item[this.childItems];
 
                 if (this.grandChildItems) {
                     if (value && !this.selectedItem) {
@@ -159,7 +161,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         }
     }
 
-    selectItem(selectedItem) {
+    selectItem(selectedItem: any) {
         this.selectedItem = selectedItem;
         if (selectedItem) {
             if (this.itemKey) {
@@ -189,7 +191,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.dropdown.hide();
     }
 
-    private setSelectedItem(value, items) {
+    private setSelectedItem(value: any, items: Array<any>) {
         if (this.itemKey) {
             if (value && items) {
                 this.selectedItem = items.find(c => c[this.itemKey] === value);
@@ -214,13 +216,13 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
     }
 
-    onTextEntryEnter($event) {
+    onTextEntryEnter($event: any) {
         this.dropdown.hide();
     }
 
     // detect a click outside the control, and hide the dropdown
     @HostListener('document:click', ['$event.target'])
-    public onClick(targetElement) {
+    public onClick(targetElement: any) {
         if (this.dropdown.isOpen) {
             const clickedInside = this.dropdownElement.nativeElement.contains(targetElement);
             if (!clickedInside) {

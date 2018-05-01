@@ -2,8 +2,9 @@ import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DexihWidgetComponent } from './dexih-widget.component';
-import { DexihWidgetsGridComponent } from './dexih-widgets-grid.component';
-import { Observable } from 'rxjs/Rx';
+import { DexihWidgetColumnsComponent } from './dexih-widget-columns.component';
+import { DexihWidgetDeckComponent } from './dexih-widget-deck.component';
+import { DexihWidgetVerticalComponent } from './dexih-widget-vertical.component';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -15,10 +16,16 @@ import 'rxjs/add/operator/debounceTime';
   ],
   declarations: [
     DexihWidgetComponent,
-    DexihWidgetsGridComponent],
+    DexihWidgetColumnsComponent,
+    DexihWidgetDeckComponent,
+    DexihWidgetVerticalComponent
+  ],
   exports: [
     DexihWidgetComponent,
-    DexihWidgetsGridComponent],
+    DexihWidgetColumnsComponent,
+    DexihWidgetDeckComponent,
+    DexihWidgetVerticalComponent
+  ],
 })
 export class DexihWidgetModule {
 }

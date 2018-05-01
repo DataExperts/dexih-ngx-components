@@ -2,6 +2,7 @@ import { Component, forwardRef, Input, EventEmitter, Output, HostListener } from
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
+    moduleId: module.id,
     selector: 'form-tags',
     templateUrl: 'dexih-form-tags.component.html',
     providers: [
@@ -19,6 +20,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
     @Input() subLabel: string;
     @Input() maxlength: number;
     @Input() border = true;
+    @Input() disabled = false;
 
     isDirty = false;
     id = 'input_' + Math.random().toString(36).substr(2, 9);
