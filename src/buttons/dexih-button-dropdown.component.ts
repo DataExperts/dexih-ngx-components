@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { BsDropdownDirective } from 'ngx-bootstrap';
 
 @Component({
     selector: 'dexih-button-dropdown',
     templateUrl: './dexih-button-dropdown.component.html',
     styleUrls: ['./dexih-button-dropdown.component.scss']
 })
-export class DexihButtonDropDownComponent implements OnInit {
+export class DexihButtonDropDownComponent {
     @Input() buttonClass = 'btn btn-primary';
     @Input() iconClass: string;
     @Input() title: string;
@@ -17,14 +18,24 @@ export class DexihButtonDropDownComponent implements OnInit {
     @Input() badgeClass = '';
     @Input() hideCarrot = false;
     @Input() compact = false;
+    @Input() autoClose = true;
+    @Input() isOpen = false;
 
-  //  @Output() click = new EventEmitter<any>();
+    @Output() isOpenChange = new EventEmitter<any>();
+
+    @ViewChild('dropdown') dropdown: BsDropdownDirective;
 
     constructor() { }
 
-    ngOnInit() { }
+    public showDropdown() {
+        this.dropdown.show();
+    }
 
-    // onClick($event) {
-    //     this.click.emit($event);
-    // }
+    public hideDropdown() {
+        this.dropdown.hide();
+    }
+
+    public openChange($event: any) {
+        this.isOpenChange.emit($event);
+    }
 }

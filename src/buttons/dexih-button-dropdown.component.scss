@@ -6,3 +6,7 @@ https://github.com/valor-software/ngx-bootstrap/issues/4226
   right: 0 !important;
   left: auto !important; 
 }
+
+.dropdown-menu li:hover {
+  cursor: pointer;
+}
