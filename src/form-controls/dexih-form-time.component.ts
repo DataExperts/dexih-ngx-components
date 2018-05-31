@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'form-time',
-    templateUrl: 'dexih-form-time.component.html',
+    templateUrl: './dexih-form-time.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormTimeComponent), multi: true }]
 })
 export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccessor {

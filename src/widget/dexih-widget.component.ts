@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, ContentChild, TemplateRef, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'dexih-widget',
@@ -48,7 +49,7 @@ export class DexihWidgetComponent implements OnInit {
     ngOnInit() {
         // monitor changes to the filter control, and update if updated after 500ms.
         this.filterControl.valueChanges
-            .debounceTime(500)
+            .pipe(debounceTime(500))
             .subscribe(newValue => {
                 this.filterString.emit(newValue);
             });

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
-
 @Component({
-    // tslint:disable-next-line:component-selector
-    selector: 'app',
+    selector: 'app-component',
     templateUrl: './app.html'
   })
   export class AppComponent {
@@ -12,7 +10,7 @@ import { Component } from '@angular/core';
         alert('close click');
     }
 
-    public show(value) {
+    public show(value: string) {
       alert(value);
     }
   }

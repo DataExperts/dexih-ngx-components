@@ -3,10 +3,11 @@ import { Component, OnInit, OnChanges, OnDestroy, forwardRef, Input, Output,
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'form-select',
-    templateUrl: 'dexih-form-select.component.html',
+    templateUrl: './dexih-form-select.component.html',
     styleUrls: ['./dexih-form.component.scss'],
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormSelectComponent), multi: true }]
 })
@@ -82,7 +83,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             });
 
         this.filterSubscription = this.filterControl.valueChanges
-            .debounceTime(500)
+            .pipe(debounceTime(500))
             .subscribe(newValue => {
                 this.filterString = newValue;
             });

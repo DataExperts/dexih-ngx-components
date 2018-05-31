@@ -13,7 +13,7 @@ export enum eDayOfWeek {
 
 @Component({
     selector: 'form-daysofweek',
-    templateUrl: 'dexih-form-daysofweek.component.html',
+    templateUrl: './dexih-form-daysofweek.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormDaysOfWeekComponent), multi: true }]
 })
 export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, AfterViewInit {

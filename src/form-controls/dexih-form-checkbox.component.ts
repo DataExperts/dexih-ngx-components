@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'form-checkbox',
-    templateUrl: 'dexih-form-checkbox.component.html',
+    templateUrl: './dexih-form-checkbox.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormCheckboxComponent), multi: true }]
 })
 export class DexihFormCheckboxComponent implements ControlValueAccessor {

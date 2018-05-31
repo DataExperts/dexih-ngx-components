@@ -13,15 +13,15 @@ import { DexihFormTagsDropdownComponent } from './dexih-form-tagsDropdown.compon
 
 import { DexihSelectFilterPipe } from './dexih-select-filter.pipe';
 import { BsDropdownModule } from 'ngx-bootstrap';
-import { MarkdownModule } from 'ngx-md';
+import { NgxMdModule } from 'ngx-md';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BsDropdownModule.forRoot(),
-    MarkdownModule,
+    BsDropdownModule,
+    NgxMdModule,
   ],
   declarations: [
     DexihFormInputComponent,

@@ -3,9 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 @Component({
-    moduleId: module.id,
     selector: 'form-textarea',
-    templateUrl: 'dexih-form-textarea.component.html',
+    templateUrl: './dexih-form-textarea.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormTextAreaComponent), multi: true }],
     animations: [
     // trigger name for attaching this animation to an element using the [@triggerName] syntax

@@ -18,9 +18,10 @@
     "types": []
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
+    "annotateForClosureCompiler": false,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
+    "skipMetadataEmit": false,
     "flatModuleOutFile": "dexih-ngx-components.js",
     "flatModuleId": "dexih-ngx-components"
   },

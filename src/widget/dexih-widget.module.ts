@@ -6,8 +6,6 @@ import { DexihWidgetColumnsComponent } from './dexih-widget-columns.component';
 import { DexihWidgetDeckComponent } from './dexih-widget-deck.component';
 import { DexihWidgetVerticalComponent } from './dexih-widget-vertical.component';
 
-import 'rxjs/add/operator/debounceTime';
-
 @NgModule({
   imports: [
     CommonModule,

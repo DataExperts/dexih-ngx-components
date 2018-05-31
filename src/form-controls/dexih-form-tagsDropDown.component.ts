@@ -3,9 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
 
 @Component({
-    moduleId: module.id,
     selector: 'form-tags-dropdown',
-    templateUrl: 'dexih-form-tagsDropdown.component.html',
+    templateUrl: './dexih-form-tagsDropdown.component.html',
     providers: [
         { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormTagsDropdownComponent), multi: true },
     ]

@@ -3,7 +3,7 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS,  }
 
 @Component({
     selector: 'form-date',
-    templateUrl: 'dexih-form-date.component.html',
+    templateUrl: './dexih-form-date.component.html',
     providers: [
         { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DexihFormDateComponent), multi: true },
         { provide: NG_VALIDATORS, useExisting: forwardRef(() => DexihFormDateComponent), multi: true }

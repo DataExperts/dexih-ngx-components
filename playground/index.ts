@@ -2,15 +2,17 @@
  * This is only for local test
  */
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Route } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { DexihComponentsModule }  from 'dexih-ngx-components';
-// import { DexihComponentsModule }  from '../src';
+import { NgxMdModule } from 'ngx-md';
+
+// import { DexihComponentsModule }  from 'dexih-ngx-components';
+import { DexihComponentsModule }  from '../src';
 
 import { AppComponent} from './app';
-import { RouterModule, Route } from '@angular/router';
 
 const ROUTES: Route[] = [
   // HERE ROUTES DEFINITIONS
@@ -26,11 +28,9 @@ const ROUTES: Route[] = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgxMdModule.forRoot(),
+    DexihComponentsModule,
     RouterModule.forRoot(ROUTES),
-    DexihComponentsModule
-  ],
-  exports: [
-    RouterModule
   ]
 })
 class AppModule {}

@@ -25,10 +25,4 @@ import { DexihFormControlsModule } from './form-controls/dexih-form-controls.mod
   ]
 })
 export class DexihComponentsModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: DexihComponentsModule,
-      providers: []
-    };
-  }
 }
