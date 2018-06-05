@@ -80,6 +80,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "@angular/cli": "^6.0.3"
+    "@angular/cli": "^6.0.3",
+    "systemjs-plugin-babel": "0.0.25"
   }
 }

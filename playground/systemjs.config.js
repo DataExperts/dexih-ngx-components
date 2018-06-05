@@ -30,14 +30,18 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       'rxjs': 'npm:rxjs',
 
+      'plugin-babel': 'npm:systemjs-plugin-babel/plugin-babel.js',
+      'systemjs-babel-build': 'npm:systemjs-plugin-babel/systemjs-babel-browser.js',
+
       // other libraries
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
-      'ngx-md': 'npm:ngx-md/bundles/ngx-md.umd.min.js',
+      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles',
+      'ngx-md': 'npm:ngx-md/bundles/ngx-md.umd.js',
       'marked': 'npm:marked/marked.min.js',
       'prismjs': 'npm:prismjs/prism.js',
       'dexih-ngx-components': '../dist'
     },
+    transpiler: 'plugin-babel',
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       '.': {
@@ -57,6 +61,10 @@
       },
       'rxjs/operators': {
         main: 'index.js', 
+        defaultExtension: 'js' 
+      },
+      'ngx-bootstrap': {
+        main: 'ngx-bootstrap.es2015.js', 
         defaultExtension: 'js' 
       },
       'dexih-ngx-components': {

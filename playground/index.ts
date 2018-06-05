@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { NgxMdModule } from 'ngx-md';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 // import { DexihComponentsModule }  from 'dexih-ngx-components';
 import { DexihComponentsModule }  from '../src';
@@ -28,9 +29,10 @@ const ROUTES: Route[] = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgxMdModule.forRoot(),
-    DexihComponentsModule,
     RouterModule.forRoot(ROUTES),
+    NgxMdModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    DexihComponentsModule,
   ]
 })
 class AppModule {}

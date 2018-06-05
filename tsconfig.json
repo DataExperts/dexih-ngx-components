@@ -3,12 +3,20 @@
     "baseUrl": "./src",
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "module": "commonjs",
     "rootDir": "./src",
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
-      "es2015",
+      "es6",
       "dom"
     ],
     "skipLibCheck": true,
-    "types": []
+    "types": [
+      "jasmine",
+      "node"
+    ],
   }
 }

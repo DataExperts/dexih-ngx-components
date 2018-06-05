@@ -21,11 +21,11 @@
   "jsnext:main": "dexih-ngx-components.js",
   "typings": "dexih-ngx-components.d.ts",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/forms": "^5.0.0",
-    "@angular/router": "^5.0.0",
-    "@angular/animations": "^5.0.0",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
+    "@angular/router": "^6.0.0",
+    "@angular/animations": "^6.0.0",
+    "rxjs": "^6.2.0",
+    "zone.js": "^0.8.14"
   }
 }
