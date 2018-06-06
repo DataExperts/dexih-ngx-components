@@ -6,7 +6,14 @@
     
     <div #dropdown dropdown [autoClose]="false" class="input-group" style="width: 100%" >
             <div class="input-group" [id]="id" dropdownToggle (click)="dropdown.autoClose=false"  style="width: 100%">
-                <input [attr.disabled]="enableFilter ? null : ''" [formControl]="manualControl" [placeholder]="textEntryNote" (keyup.enter)="onTextEntryEnter($event)" class="form-control bg-white disabled-input" [ngClass]="{'border-top-0 border-bottom-0 border-left-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}"/>
+                <input [attr.disabled]="enableFilter || enableTextEntry ? null : ''" 
+                    [formControl]="manualControl" 
+                    [placeholder]="textEntryNote" 
+                    (keydown.arrowdown)="down()"
+                    (keydown.arrowup)="up()"
+                    (keyup.enter)="onTextEntryEnter($event)" 
+                    class="form-control bg-white disabled-input" 
+                    [ngClass]="{'border-top-0 border-bottom-0 border-left-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}"/>
                 <div class="input-group-append">
                     <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}">
                         <i class="icon-append fa fa-caret-down"></i>

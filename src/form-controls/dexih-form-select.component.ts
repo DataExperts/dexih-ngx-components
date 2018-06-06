@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, OnDestroy, forwardRef, Input, Output,
-    ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
+    ViewChild, HostListener, ElementRef, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
 import { Subscription } from 'rxjs';
@@ -47,6 +47,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     filterSubscription: Subscription;
     manualSubscription: Subscription;
 
+    needsUpdate = false;
+
     filterControl = new FormControl();
     filterString = '';
 
@@ -54,6 +56,12 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
     manualControl = new FormControl();
     doManualControlUpdate = true;
+
+    // contains a list of the items all combine into one array.
+    flattenedItems: Array<any>;
+
+    // select index used for maintaining position when using arrows
+    selectedIndex: number;
 
     isDirty = false;
 
@@ -69,32 +77,43 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.manualSubscription = this.manualControl.valueChanges
             .subscribe(newValue => {
                 if (this.doManualControlUpdate) {
+                    this.needsUpdate = true;
                     this.textValue = newValue;
                     this.selectedItem = null;
                     this.selectedName = this.textValue;
 
-                    // if (this.itemName) {
-                    //     this.value = null;
-                    // } else {
-                    //     this.value = newValue;
-                    // }
-
-                    this.value = this.matchItem(newValue);
-
-                    if (!this.itemName && !this.value && this.enableTextEntry) {
-                        this.value = newValue;
+                    let foundItem;
+                    if (this.itemName) {
+                        foundItem = this.flattenedItems
+                            .find(c => (<string>c[this.itemName]).toLocaleLowerCase() === newValue.toLowerCase());
+                        if (foundItem) {
+                            this.selectedItem = foundItem;
+                        } else if (this.enableTextEntry) {
+                            this.selectedItem = newValue;
+                        }
+                    } else {
+                        foundItem = this.flattenedItems.find(c => (<string>c).toLocaleLowerCase() === newValue.toLowerCase());
+                        if (foundItem || this.enableTextEntry) {
+                            this.selectedItem = newValue;
+                        } else {
+                            this.selectedItem = null;
+                        }
                     }
 
                     this.textValueChange.emit(this.textValue);
 
-                    this.onChange(this.value);
-                    this.onTouched();
-                    this.isDirty = true;
-                    this.filterString = newValue;
+                    // this.onChange(this.value);
+                    // this.onTouched();
+                    // this.isDirty = true;
+
+                    if (this.enableFilter) {
+                        this.filterString = newValue;
+                    }
                 }
                 this.doManualControlUpdate = true;
             });
 
+         // this.refreshItems();
         // this.filterSubscription = this.manualControl.valueChanges
         //     .pipe(debounceTime(500))
         //     .subscribe(newValue => {
@@ -104,22 +123,10 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         //     });
      }
 
-    ngOnChanges() {
-        if (this.sortItems) {
-            this.sortedItems = this.items.sort((a, b) => {
-                if (a[this.itemName] > b[this.itemName]) {
-                    return 1;
-                }
-                if (a[this.itemName] < b[this.itemName]) {
-                    return -1;
-                }
-                return 0;
-            });
-        } else {
-            this.sortedItems = this.items;
-        }
+    ngOnChanges(changes: SimpleChanges) {
+        this.refreshItems();
 
-        this.writeValue(this.value);
+      //  this.writeValue(this.value);
     }
 
     ngOnDestroy() {
@@ -176,51 +183,40 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         }
     }
 
-    // attempts to match the text value to an item in the list.
-    matchItem(value: string): any {
-        let item = null;
+    refreshItems() {
+        if (this.sortItems) {
+            this.sortedItems = this.items.sort((a, b) => {
+                if (a[this.itemName] > b[this.itemName]) {
+                    return 1;
+                }
+                if (a[this.itemName] < b[this.itemName]) {
+                    return -1;
+                }
+                return 0;
+            });
+        } else {
+            this.sortedItems = this.items;
+        }
 
-        let items = [];
-
+        this.flattenedItems = [];
         if (this.childItems) {
             this.items.forEach(parentItem => {
                 let childItems = <Array<any>> parentItem[this.childItems];
                 if (this.grandChildItems) {
                     childItems.forEach(childItem => {
-                        if (!item) {
-                            item = this.matchItem2(childItem[this.grandChildItems], value);
-                        }
+                        this.flattenedItems = this.flattenedItems.concat(childItem[this.grandChildItems]);
                     });
                 } else {
-                    if (!item) {
-                        item = this.matchItem2(childItems, value);
-                    }
+                    this.flattenedItems = this.flattenedItems.concat(childItems);
                 }
             });
         } else {
-            item = this.matchItem2(this.items, value);
+            this.flattenedItems = this.items;
         }
-
-        return item;
     }
 
-    matchItem2(items: Array<any>, value: string): any {
-        let item;
-        if (this.itemName) {
-            let found = items.find(c => (<string>c[this.itemName]).toLocaleLowerCase() === value.toLowerCase());
-            if (found) {
-                item = found[this.itemKey];
-            } else {
-                item = null;
-            }
-        } else {
-            item = items.find(c => (<string>c).toLocaleLowerCase() === value.toLowerCase());
-        }
-
-        return item;
-    }
-
-    selectItem(selectedItem: any) {
+    selectItem(selectedItem: any, hideDropdown = true) {
+        this.needsUpdate = true;
 
         this.selectedItem = selectedItem;
         if (selectedItem) {
@@ -238,6 +234,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             this.doManualControlUpdate = false;
             this.textValue = this.selectedName;
             this.manualControl.setValue(this.selectedName);
+
             this.textValueChange.emit(this.textValue);
 
         } else {
@@ -248,7 +245,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
-        this.updateTextEntry();
+        if (hideDropdown) { this.dropdown.hide(); }
+        // this.updateTextEntry(hideDropdown);
     }
 
     private setSelectedItem(value: any, items: Array<any>) {
@@ -285,22 +283,109 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     // detect a click outside the control, and hide the dropdown
     @HostListener('document:click', ['$event.target'])
     public onClick(targetElement: any) {
-        if (this.dropdown.isOpen) {
+       if (this.needsUpdate) {
             const clickedInside = this.dropdownElement.nativeElement.contains(targetElement);
             if (!clickedInside) {
                 this.updateTextEntry();
             }
+       }
+       if (this.dropdown.isOpen) {
+            const clickedInside = this.dropdownElement.nativeElement.contains(targetElement);
+            if (!clickedInside) {
+                this.dropdown.hide();
+        }
+       }
+    }
+
+    getFilteredItems(): Array<any> {
+        if (this.filterString) {
+            const filterString = this.filterString.toLowerCase();
+            if (this.itemName) {
+                return this.flattenedItems.filter(c => c[this.itemName].toLowerCase().includes(filterString) );
+            } else {
+                return this.flattenedItems.filter(c => c.toLowerCase().includes(filterString));
+            }
+        } else {
+            return this.flattenedItems;
         }
     }
 
-    private updateTextEntry() {
-        this.dropdown.hide();
-        this.filterString = null;
-        if (!this.enableTextEntry) {
-            if (!this.selectedItem) {
-                this.doManualControlUpdate = false;
-                this.manualControl.setValue(null);
+    down() {
+        let found = false;
+        let nextItem = null;
+        const filteredItems = this.getFilteredItems();
+        filteredItems.forEach(item => {
+            if (!nextItem) {
+                if (found) {
+                    nextItem = item;
+                }
+                if (this.itemName && item[this.itemName].toLowerCase() === this.selectedName.toLowerCase()) {
+                    found = true;
+                } else if (!this.itemName && item.toLowerCase() === this.selectedName.toLowerCase()) {
+                    found = true;
+                }
+            }
+        });
+
+        if (!nextItem && filteredItems.length > 0) {
+            nextItem = filteredItems[0];
+        }
+
+        this.selectItem(nextItem, false);
+    }
+
+    up() {
+        let found = false;
+        let previousItem = null;
+        let foundItem = null;
+        const filteredItems = this.getFilteredItems();
+        filteredItems.forEach(item => {
+            if (!foundItem) {
+                if (this.itemName && item[this.itemName].toLowerCase() === this.selectedName.toLowerCase()) {
+                    foundItem = previousItem;
+                } else if (!this.itemName && item.toLowerCase() === this.selectedName.toLowerCase()) {
+                    foundItem = previousItem;
+                }
+                previousItem = item;
+            }
+        });
+
+        if (!foundItem && filteredItems.length > 0) {
+            foundItem = filteredItems[filteredItems.length - 1];
+        }
+
+        this.selectItem(foundItem, false);
+    }
+    private updateTextEntry(hideDropdown = true) {
+        if (hideDropdown) { this.dropdown.hide(); }
+        if (this.enableTextEntry) {
+            this.value = this.selectedItem;
+            this.manualControl.setValue(this.selectedName);
+        } else if (!this.selectedItem) {
+            this.doManualControlUpdate = false;
+            if (this.itemName && this.value) {
+                let item = this.flattenedItems.find(c => c[this.itemKey] === this.value);
+                if (item) {
+                    this.manualControl.setValue(item[this.itemName]);
+                } else {
+                    this.manualControl.setValue(null);
+                }
+            } else {
+                this.manualControl.setValue(this.value);
+            }
+        } else {
+            if (this.itemKey) {
+                this.value = this.selectedItem[this.itemKey];
+            } else {
+                this.value = this.selectedItem;
             }
         }
+
+        this.needsUpdate = false;
+        this.filterString = '';
+        this.onChange(this.value);
+        this.onTouched();
+        this.isDirty = true;
+
     }
 }
