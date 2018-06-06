@@ -23,7 +23,7 @@
                                     <i class="fa fa-search"></i>
                                 </span>
                             </span>
-                            <input [ngModel]="filter" [formControl]="filterControl" type="text" placeholder="Filter the items">
+                            <input [formControl]="filterControl" type="text" placeholder="Filter the items">
                         </div>
                 </div>
                     <button *ngIf="showCloseButton" type="button" class="close ml-2" (click)="doClose()" aria-label="Close">

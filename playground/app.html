@@ -80,18 +80,26 @@
 
         <dexih-widget title="Dropdowns" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
-                <form-select label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                <div>selected item: {{selectedItem}}</div>
+                <div>text value: {{textValue}}</div>
+                <form-select name="formSelect" label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true" [(ngModel)]="selectedItem" [ngModelOptions]="{standalone: true}" [(textValue)]="textValue" ></form-select>
                 <form-select label="No Filter" [items]="['item1', 'item2','item3']" [enableFilter]="false"></form-select>
                 <form-select label="Default Value" [allowNullSelect]="true" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                
+                <div>selected item key: {{selectedItem2}}</div>
+                <div>text value: {{textValue2}}</div>
                 <form-select label="Select with key/value" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]"
-                    itemName='name' itemKey='key'></form-select>
+                    itemName='name' itemKey='key' [(ngModel)]="selectedItem2" [(textValue)]="textValue2" [ngModelOptions]="{standalone: true}"></form-select>
                 <form-select label="Select with parent/child" [items]="
                     [
                     {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
                     {category: 'category2', items: ['cat2 item1', 'cat2 item2', 'cat2 item3']},
                     {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
-                    ]" parentName='category' childItems='items'></form-select>
+                    ]" parentName='category' childItems='items' >
+                </form-select>
 
+                <div>selected item: {{selectedItem3}}</div>
+                <div>text value: {{textValue3}}</div>
                 <form-select label="Select with grand parent/child" [items]="
                 [{region: 'region1', categories: [
                 {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
@@ -102,7 +110,8 @@
                 {category: 'category1', items: ['cat1 item1', 'cat1 item2', 'cat1 item3']}, 
                 {category: 'category2', items: ['cat2 item1', 'cat2 item2', 'cat2 item3']},
                 {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
-                ]}]" grandParentName='region' parentName='category' grandChildItems='items' childItems='categories'></form-select>
+                ]}]" grandParentName='region' parentName='category' grandChildItems='items' childItems='categories'
+                [(ngModel)]="selectedItem3" [(textValue)]="textValue3" [enableTextEntry]="true" [ngModelOptions]="{standalone: true}"></form-select>
             </form>
 
             <form-select label="Select with note" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name'

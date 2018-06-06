@@ -41,7 +41,6 @@ export class DexihWidgetComponent implements OnInit {
     @ContentChild('footer') footerTemplate: TemplateRef<any>;
 
     filterControl = new FormControl();
-    filter: string;
 
     constructor() {
     }

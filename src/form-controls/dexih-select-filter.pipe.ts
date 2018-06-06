@@ -12,9 +12,9 @@ export class DexihSelectFilterPipe implements PipeTransform {
         if (filter) {
             const filterString = filter.toLowerCase();
             if (field) {
-                return items.filter(c => c[field].toLowerCase().includes(filter) );
+                return items.filter(c => c[field].toLowerCase().includes(filterString) );
             } else {
-                return items.filter(c => c.toLowerCase().includes(filter));
+                return items.filter(c => c.toLowerCase().includes(filterString));
             }
         } else {
             return items;
