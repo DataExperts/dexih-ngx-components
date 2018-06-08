@@ -69,7 +69,7 @@
 
         <dexih-widget title="Text Areas" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
-                <form-textarea label="edit shown" [isHidden]="false" value="a **bold** item"></form-textarea>
+                <form-textarea label="edit shown" [isHidden]="false" value="a **bold** item, [a link](http://www.microsoft.com)"></form-textarea>
                 <form-textarea label="edit hidden" [isHidden]="true" value="a **bold** item"></form-textarea>
                 <form-textarea label="with errors" [isHidden]="true" value="a **bold** item" errors="the error"></form-textarea>
                 <form-textarea label="with note" [isHidden]="true" value="a **bold** item" note="a note describing the textarea"></form-textarea>
@@ -85,6 +85,8 @@
                 <form-select name="formSelect" label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true" [(ngModel)]="selectedItem" [ngModelOptions]="{standalone: true}" [(textValue)]="textValue" ></form-select>
                 <form-select label="No Filter" [items]="['item1', 'item2','item3']" [enableFilter]="false"></form-select>
                 <form-select label="Default Value" [allowNullSelect]="true" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                
+                <form-select label="No Items" [items]="[]" [enableTextEntry]="true" iconClass="fa fa-pie-chart"></form-select>
                 
                 <div>selected item key: {{selectedItem2}}</div>
                 <div>text value: {{textValue2}}</div>

@@ -24,7 +24,7 @@
     <div *ngIf="showPreview && value">
         <label *ngIf="!isHidden">Preview</label>
         <div class="border rounded p-2">
-            <markdown *ngIf="value" [data]="value"></markdown>
+            <markdown *ngIf="value" (click)="getRoute($event)" [data]="value"></markdown>
         </div>
     </div>
 </div>

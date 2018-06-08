@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, OnDestroy, forwardRef, Input, Output,
     ViewChild, HostListener, ElementRef, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
-import { Subscription } from 'rxjs';
+import { Subscription, pipe } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -16,6 +16,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() note: string;
     @Input() errors: string;
     @Input() value: any;
+    @Input() iconClass: string; // only displays where there are no elements.
     @Input() items: Array<any>;
     @Input() parentName: string;
     @Input() grandParentName: string;
@@ -83,19 +84,25 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                     this.selectedName = this.textValue;
 
                     let foundItem;
-                    if (this.itemName) {
-                        foundItem = this.flattenedItems
-                            .find(c => (<string>c[this.itemName]).toLocaleLowerCase() === newValue.toLowerCase());
-                        if (foundItem) {
-                            this.selectedItem = foundItem;
-                        } else if (this.enableTextEntry) {
-                            this.selectedItem = newValue;
+                    if (newValue) {
+                        if (this.itemName) {
+                            foundItem = this.flattenedItems
+                                .find(c => (<string>c[this.itemName]).toLocaleLowerCase() === newValue.toLowerCase());
+                            if (foundItem) {
+                                this.selectedItem = foundItem;
+                            } else if (this.enableTextEntry) {
+                                this.selectedItem = newValue;
+                            }
+                        } else {
+                            foundItem = this.flattenedItems.find(c => (<string>c).toLocaleLowerCase() === newValue.toLowerCase());
+                            if (foundItem || this.enableTextEntry) {
+                                this.selectedItem = newValue;
+                            } else {
+                                this.selectedItem = null;
+                            }
                         }
                     } else {
-                        foundItem = this.flattenedItems.find(c => (<string>c).toLocaleLowerCase() === newValue.toLowerCase());
-                        if (foundItem || this.enableTextEntry) {
-                            this.selectedItem = newValue;
-                        } else {
+                        if (this.allowNullSelect) {
                             this.selectedItem = null;
                         }
                     }
@@ -356,8 +363,28 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
         this.selectItem(foundItem, false);
     }
-    private updateTextEntry(hideDropdown = true) {
-        if (hideDropdown) { this.dropdown.hide(); }
+
+    dropdownShow() {
+        this.dropdown.show();
+    }
+
+    // the timeout is to allow the menu click to occur before closing the dropdown.
+    dropdownHide(delay = 500) {
+        setTimeout(() => {
+            this.dropdown.hide();
+        },
+        delay);
+    }
+
+    dropdownToggle() {
+        if (this.items && this.items.length > 0) {
+            this.dropdown.toggle(true);
+        }
+    }
+
+    private updateTextEntry() {
+        this.dropdown.toggle();
+
         if (this.enableTextEntry) {
             this.value = this.selectedItem;
             this.manualControl.setValue(this.selectedName);

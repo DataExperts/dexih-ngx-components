@@ -5,7 +5,7 @@
     </label>
     
     <div #dropdown dropdown [autoClose]="false" class="input-group" style="width: 100%" >
-            <div class="input-group" [id]="id" dropdownToggle (click)="dropdown.autoClose=false"  style="width: 100%">
+            <div class="input-group" [id]="id" (click)="dropdownToggle()" style="width: 100%">
                 <input [attr.disabled]="enableFilter || enableTextEntry ? null : ''" 
                     [formControl]="manualControl" 
                     [placeholder]="textEntryNote" 
@@ -13,10 +13,13 @@
                     (keydown.arrowup)="up()"
                     (keyup.enter)="onTextEntryEnter($event)" 
                     class="form-control bg-white disabled-input" 
-                    [ngClass]="{'border-top-0 border-bottom-0 border-left-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}"/>
+                    [ngClass]="{'border-top-0 border-bottom-0 border-left-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}"
+                    (focusout)="dropdownHide()"
+                    />
                 <div class="input-group-append">
                     <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}">
-                        <i class="icon-append fa fa-caret-down"></i>
+                        <i *ngIf="items && items.length > 0" class="icon-append fa fa-caret-down"></i>
+                        <i *ngIf="iconClass && (!items || items.length == 0) " class="icon-append {{iconClass}}"></i>
                     </span>
                 </div>
                 <div *ngIf="errors" class="invalid-feedback">
@@ -48,9 +51,9 @@
                 </div>
             </div> -->
 
-            <ng-template [ngIf]="items">
+            <ng-template [ngIf]="items && items.length > 0">
                 <li *ngIf="allowNullSelect" >
-                    <a class="dropdown-item" [ngClass]="{'active': selectedItem == item}" (click)="selectItem(null)">{{selectNullMessage}}</a>
+                    <a class="dropdown-item" [ngClass]="{'active': !selectedItem }" (click)="selectItem(null)">{{selectNullMessage}}</a>
                 </li>
 
                 <ng-template [ngIf]="!childItems && !grandChildItems">
