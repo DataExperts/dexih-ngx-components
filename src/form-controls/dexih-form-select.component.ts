@@ -29,6 +29,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() allowNullSelect = false;
     @Input() selectNullMessage = 'Select nothing';
     @Input() enableTextEntry = false;
+    @Input() enableTextEntryMatch = true; // keeps text entry in sync with the value variable.
     @Input() textEntryNote = 'Enter a value';
     @Input() textValue: string = null;
     @Input() border = true;
@@ -84,27 +85,33 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                     this.selectedName = this.textValue;
 
                     let foundItem;
-                    if (newValue) {
+                    if (newValue && this.enableTextEntryMatch) {
                         if (this.itemName) {
                             foundItem = this.flattenedItems
                                 .find(c => (<string>c[this.itemName]).toLocaleLowerCase() === newValue.toLowerCase());
                             if (foundItem) {
                                 this.selectedItem = foundItem;
+                                this.doManualControlUpdate = false;
+                                this.textValue = foundItem[this.itemName];
+                                this.manualControl.setValue(foundItem[this.itemName]);
                             } else if (this.enableTextEntry) {
                                 this.selectedItem = newValue;
                             }
                         } else {
                             foundItem = this.flattenedItems.find(c => (<string>c).toLocaleLowerCase() === newValue.toLowerCase());
-                            if (foundItem || this.enableTextEntry) {
+                            if (foundItem) {
+                                this.selectedItem = foundItem;
+                                this.doManualControlUpdate = false;
+                                this.textValue = foundItem;
+                                this.manualControl.setValue(foundItem);
+                            } else if (this.enableTextEntry) {
                                 this.selectedItem = newValue;
-                            } else {
-                                this.selectedItem = null;
                             }
                         }
                     } else {
-                        if (this.allowNullSelect) {
+                       if (this.allowNullSelect) {
                             this.selectedItem = null;
-                        }
+                       }
                     }
 
                     this.textValueChange.emit(this.textValue);
@@ -387,16 +394,19 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
         if (this.enableTextEntry) {
             this.value = this.selectedItem;
-            this.manualControl.setValue(this.selectedName);
+            // this.manualControl.setValue(this.selectedName);
         } else if (!this.selectedItem) {
             this.doManualControlUpdate = false;
             if (this.itemName && this.value) {
                 let item = this.flattenedItems.find(c => c[this.itemKey] === this.value);
                 if (item) {
-                    this.manualControl.setValue(item[this.itemName]);
+                    this.textValue = item[this.itemName];
                 } else {
-                    this.manualControl.setValue(null);
+                    this.textValue = item[this.itemName];
                 }
+                this.selectedItem = item;
+                this.manualControl.setValue(this.textValue);
+                this.textValueChange.emit(this.textValue);
             } else {
                 this.manualControl.setValue(this.value);
             }

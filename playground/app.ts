@@ -12,8 +12,14 @@ import { Component } from '@angular/core';
     public selectedItem2 = 1;
     public textValue2: string = null;
 
-    public selectedItem3 = 'cat2 item2';
-    public textValue3: string = null;
+    public selectedItem3 = null;
+    public textValue3: string = 'static value';
+
+    public selectedItem4 = null;
+    public textValue4: string = 'the text';
+
+    public selectedItem5 = 'cat2 item2';
+    public textValu54: string = null;
 
     public close() {
         alert('close click');
