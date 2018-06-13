@@ -116,9 +116,9 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
                     this.textValueChange.emit(this.textValue);
 
-                    // this.onChange(this.value);
-                    // this.onTouched();
-                    // this.isDirty = true;
+                    this.onChange(this.value);
+                    this.onTouched();
+                    this.isDirty = true;
 
                     if (this.enableFilter) {
                         this.filterString = newValue;
