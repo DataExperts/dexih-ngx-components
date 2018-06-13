@@ -73,7 +73,7 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
         let element = event.target;
         while (element) {
             let link: string = element.getAttribute('href');
-            if (link.startsWith('http://') || link.startsWith('https://')) {
+            if (link && ( link.startsWith('http://') || link.startsWith('https://'))) {
                 window.open(link);
             }
             event.preventDefault();
