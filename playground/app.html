@@ -80,6 +80,7 @@
 
         <dexih-widget title="Dropdowns" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
+                <div>enableTextEntry=true</div>
                 <div>selected item: {{selectedItem}}</div>
                 <div>text value: {{textValue}}</div>
                 <form-select name="formSelect" label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true" [(ngModel)]="selectedItem" [ngModelOptions]="{standalone: true}" [(textValue)]="textValue" ></form-select>
@@ -89,16 +90,19 @@
                 
                 <form-select label="No Items" [items]="[]" [enableTextEntry]="true" iconClass="fa fa-pie-chart"></form-select>
                 
+                <div>enableTextEntry=false</div>
                 <div>selected item key: {{selectedItem2}}</div>
                 <div>text value: {{textValue2}}</div>
                 <form-select label="Select with key/value" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]"
                     itemName='name' itemKey='key' [(ngModel)]="selectedItem2" [(textValue)]="textValue2" [ngModelOptions]="{standalone: true}"></form-select>
 
+                <div>enableTextEntry=true, enableTextEntryMatch=false</div>
                 <div>selected item key: {{selectedItem3}}</div>
                 <div>text value: {{textValue3}}</div>
                 <form-select label="Select with key/value & text entry" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]"
                     itemName='name' itemKey='key' [(ngModel)]="selectedItem3" [(textValue)]="textValue3" [ngModelOptions]="{standalone: true}" [enableTextEntry]="true" [enableTextEntryMatch]="false"></form-select>
     
+                <div>enableTextEntry=true, enableTextEntryMatch=false</div>
                 <div>selected item key: {{selectedItem4}}</div>
                 <div>text value: {{textValue4}}</div>
                 <form-select label="Select with parent/child" [items]="
@@ -111,6 +115,7 @@
                     >
                 </form-select>
 
+                <div>enableTextEntry=true, enableTextEntryMatch=false</div>
                 <div>selected item: {{selectedItem5}}</div>
                 <div>text value: {{textValue5}}</div>
                 <form-select label="Select with grand parent/child" [items]="

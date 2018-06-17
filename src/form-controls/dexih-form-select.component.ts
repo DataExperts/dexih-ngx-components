@@ -28,7 +28,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() defaultItem: string; // item is added to the list when list is empty.
     @Input() allowNullSelect = false;
     @Input() selectNullMessage = 'Select nothing';
-    @Input() enableTextEntry = false;
+    @Input() enableTextEntry = false; // allows text to be entered in addition to selected entries.
     @Input() enableTextEntryMatch = true; // keeps text entry in sync with the value variable.
     @Input() textEntryNote = 'Enter a value';
     @Input() textValue: string = null;
@@ -94,6 +94,12 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                                 this.doManualControlUpdate = false;
                                 this.textValue = foundItem[this.itemName];
                                 this.manualControl.setValue(foundItem[this.itemName]);
+                                if (!this.enableTextEntry) {
+                                    this.updateValueFromItem(this.selectedItem);
+
+                                    this.textValueChange.emit(this.textValue);
+                                    this.hasChanged(null);
+                                }
                             } else if (this.enableTextEntry) {
                                 this.selectedItem = newValue;
                             }
@@ -104,6 +110,11 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                                 this.doManualControlUpdate = false;
                                 this.textValue = foundItem;
                                 this.manualControl.setValue(foundItem);
+                                if (!this.enableTextEntry) {
+                                    this.updateValueFromItem(this.selectedItem);
+                                    this.textValueChange.emit(this.textValue);
+                                    this.hasChanged(null);
+                                }
                             } else if (this.enableTextEntry) {
                                 this.selectedItem = newValue;
                             }
@@ -114,11 +125,9 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                        }
                     }
 
-                    this.textValueChange.emit(this.textValue);
-
-                    this.onChange(this.value);
-                    this.onTouched();
-                    this.isDirty = true;
+                    if (this.enableTextEntry) {
+                        this.updateTextEntry();
+                    }
 
                     if (this.enableFilter) {
                         this.filterString = newValue;
@@ -197,6 +206,18 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         }
     }
 
+    updateValueFromItem(item) {
+        if (item) {
+            if (this.itemKey) {
+                this.value = item[this.itemKey];
+            } else {
+                this.value = item;
+            }
+        } else {
+            item = null;
+        }
+    }
+
     refreshItems() {
         if (this.sortItems) {
             this.sortedItems = this.items.sort((a, b) => {
@@ -234,11 +255,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
         this.selectedItem = selectedItem;
         if (selectedItem) {
-            if (this.itemKey) {
-                this.value = selectedItem[this.itemKey];
-            } else {
-                this.value = selectedItem;
-            }
+            this.updateValueFromItem(selectedItem);
+
             if (this.itemName) {
                 this.selectedName = selectedItem[this.itemName];
             } else {
@@ -256,9 +274,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             this.selectedName = '';
         }
 
-        this.onChange(this.value);
-        this.onTouched();
-        this.isDirty = true;
+        this.hasChanged(null);
         if (hideDropdown) { this.dropdown.hide(); }
         // this.updateTextEntry(hideDropdown);
     }
@@ -393,16 +409,18 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.dropdown.toggle();
 
         if (this.enableTextEntry) {
+            // for text entry enabeld, just set the current value and emit.
             this.value = this.selectedItem;
-            // this.manualControl.setValue(this.selectedName);
+            this.textValueChange.emit(this.textValue);
         } else if (!this.selectedItem) {
+            // no selected item, then revert to previous one.
             this.doManualControlUpdate = false;
             if (this.itemName && this.value) {
                 let item = this.flattenedItems.find(c => c[this.itemKey] === this.value);
                 if (item) {
                     this.textValue = item[this.itemName];
                 } else {
-                    this.textValue = item[this.itemName];
+                    this.textValue = null;
                 }
                 this.selectedItem = item;
                 this.manualControl.setValue(this.textValue);
@@ -411,11 +429,13 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                 this.manualControl.setValue(this.value);
             }
         } else {
-            if (this.itemKey) {
-                this.value = this.selectedItem[this.itemKey];
-            } else {
-                this.value = this.selectedItem;
-            }
+            this.updateValueFromItem(this.selectedItem);
+            // if (this.itemName) {
+            //     this.textValue = this.value[this.itemName];
+            // } else {
+            //     this.textValue = this.value;
+            // }
+            this.textValueChange.emit(this.textValue);
         }
 
         this.needsUpdate = false;
