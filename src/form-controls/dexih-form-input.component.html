@@ -5,7 +5,7 @@
 
     <small *ngIf="subLabel" class="form-text">{{subLabel}}</small>
 
-    <div class="input-group" >
+    <div class="input-group m-0" >
         <input class="form-control" [id]="id" [disabled]="disabled" [(ngModel)]="value" (ngModelChange)="hasChanged($event)" (keydown)="keydownEvent($event)"
             [type]="type" [placeholder]="placeholder ? placeholder : ''" [attr.maxlength]="maxlength"
             [ngClass]="{'border-top-0 border-bottom-0 border-left-0 rounded-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty}" />

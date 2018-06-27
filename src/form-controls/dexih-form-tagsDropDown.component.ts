@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, EventEmitter, Output, HostListener, ViewChild, OnChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDropdownDirective } from 'ngx-bootstrap';
+import { SharedFunctions, ListItem } from './shared-functions';
 
 @Component({
     selector: 'form-tags-dropdown',
@@ -22,8 +23,11 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     @Input() items: Array<any>;
     @Input() itemKey;
     @Input() itemName: string;
+    @Input() itemTitle: string;
     @Input() sortItems = false;
     @Input() border = true;
+    @Input() enableAddAll = false;
+    @Input() returnKeys = false;
 
     @ViewChild(BsDropdownDirective) dropdown: BsDropdownDirective;
     @ViewChild('dropdown') dropdownElement;
@@ -35,7 +39,8 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
 
     labels: string[] = [];
 
-    sortedItems: Array<any>;
+    sortedItems: Array<ListItem>;
+    sharedFunctions = new SharedFunctions();
 
     onChange: any = () => { };
     onTouched: any = () => { };
@@ -43,35 +48,44 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     constructor() { }
 
     ngOnChanges() {
+        let items: Array<any>;
         if (this.sortItems) {
-            this.sortedItems = this.items.sort((a, b) => {
-                if (a[this.itemName] > b[this.itemName]) {
+            items = this.items.sort((a, b) => {
+                let aLabel = this.sharedFunctions.fetchFromObject(a, this.itemName);
+                let bLabel = this.sharedFunctions.fetchFromObject(b, this.itemName);
+                if (aLabel > bLabel) {
                     return 1;
                 }
-                if (a[this.itemName] < b[this.itemName]) {
+                if (aLabel < aLabel) {
                     return -1;
                 }
                 return 0;
             });
         } else {
-            this.sortedItems = this.items;
+            items = this.items;
         }
+
+        this.sortedItems = items.map(c => {
+            return {
+                label: this.sharedFunctions.fetchFromObject(c, this.itemName),
+                key: this.sharedFunctions.fetchFromObject(c, this.itemKey),
+                title: this.sharedFunctions.fetchFromObject(c, this.itemTitle),
+                item: c
+            };
+        });
 
         this.labels = [];
         this.value.forEach(item => {
             let itemLookup: string;
-            if (this.itemKey) {
-                itemLookup = this.items.find(c => c[this.itemKey] === item);
+            if (this.returnKeys) {
+                itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === item);
             } else {
-                itemLookup = this.items.find(c => c === item);
+                itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey)
+                    === this.sharedFunctions.fetchFromObject(item, this.itemKey));
             }
 
             if (itemLookup) {
-                if (this.itemName) {
-                    this.labels.push(itemLookup[this.itemName]);
-                } else {
-                    this.labels.push(itemLookup);
-                }
+                this.labels.push(this.sharedFunctions.fetchFromObject(itemLookup, this.itemName));
             } else {
                 this.labels.push(item);
             }
@@ -100,33 +114,22 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
         // }
     }
 
-    selectItem(selectedItem: any) {
+    selectItem(selectedItem: ListItem) {
         if (selectedItem) {
-            if (this.itemKey) {
-                if (this.value.findIndex(c => c === selectedItem[this.itemKey]) >= 0 ) {
-                    return;
-                }
-
-                this.value.push(selectedItem[this.itemKey]);
-            } else {
-                if (this.value.findIndex(c => c === selectedItem) >= 0) {
-                    return;
-                }
-
-                this.value.push(selectedItem);
+            let item: any;
+            item = this.value.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === selectedItem.key);
+            if (this.returnKeys) {
+                item = this.sharedFunctions.fetchFromObject(item, this.itemKey);
             }
-            if (this.itemName) {
-                this.labels.push(selectedItem[this.itemName]);
-            } else {
-                this.labels.push(selectedItem);
-            }
+            if (item) { return; }
+            this.value.push(selectedItem.item);
+            this.labels.push(selectedItem.label);
         }
 
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
-        this.dropdown.hide();
-
+//        this.dropdown.hide();
     }
 
     remove(index) {
@@ -135,6 +138,24 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
             this.labels.splice(index, 1);
             this.hasChanged(null);
         }
+    }
+
+    addAll() {
+        if (this.returnKeys) {
+            this.value = this.sortedItems.map(c => c.key);
+        } else {
+            this.value = this.sortedItems.map(c => c.item);
+        }
+
+        this.labels = this.sortedItems.map(c => c.label);
+        this.hasChanged(null);
+        this.dropdown.hide();
+    }
+
+    clearAll() {
+        this.value = [];
+        this.labels = [];
+        this.hasChanged(null);
     }
 
     // detect a click outside the control, and hide the dropdown

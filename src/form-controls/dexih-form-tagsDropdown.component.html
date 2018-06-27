@@ -5,16 +5,22 @@
 
         <small *ngIf="subLabel" class="form-text">{{subLabel}}</small>
     
-        <div #dropdown dropdown [autoClose]="false" class="border rounded" [ngClass]="{'border rounded': border, 'border-danger': errors, 'border-success': !errors && isDirty}">
+        <div #dropdown dropdown [autoClose]="false" [ngClass]="{'border rounded': border, 'border-danger': errors, 'border-success': !errors && isDirty}">
             <div class="input-group">
                 <a dropdownToggle (click)="dropdown.autoClose=false" class="tag btn btn-sm btn-outline-primary m-1">Add</a>
                 <ul *dropdownMenu  class="dropdown-menu scrollable-menu" role="menu">
+                    <li *ngIf="enableAddAll" class="scrollable-item" >
+                        <a class="dropdown-item" (click)="addAll()" title="Add all items to the list">Add all</a>
+                    </li>            
+        
                     <li *ngFor="let item of sortedItems | filter: itemName: filterString" [ngClass]="{'active': selectedItem == item}" class="scrollable-item" >
-                        <a class="dropdown-item" (click)="selectItem(item)" [title]="itemTitle && childItem ? childItem[itemTitle] : ''"> {{itemName && item ? item[itemName] : item}}</a>
+                        <a class="dropdown-item" (click)="selectItem(item)" [title]="item.title"> {{item.label}}</a>
                     </li>            
                 </ul>
-    
-                <div *ngFor="let item of labels; let i = index" class="border rounded bg-light my-auto">
+
+                <a (click)="clearAll()" class="tag btn btn-sm btn-danger text-white m-1"><span aria-hidden="true">&times;</span></a>
+
+                <div *ngFor="let item of labels; let i = index" class="border rounded bg-light my-auto mr-1">
                     {{item}}
                     <button (click)="remove(i)" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
