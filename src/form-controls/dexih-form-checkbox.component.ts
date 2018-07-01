@@ -12,6 +12,7 @@ export class DexihFormCheckboxComponent implements ControlValueAccessor {
     @Input() errors: string;
     @Input() value: boolean;
     @Input() disabled = false;
+    @Input() border = true;
 
     isDirty = false;
     id = 'input_' + Math.random().toString(36).substr(2, 9);
