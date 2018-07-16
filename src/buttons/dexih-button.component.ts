@@ -10,7 +10,7 @@ export class DexihButtonComponent implements OnInit {
     @Input() iconClass: string;
     @Input() title: string;
     @Input() routerLink: string;
-    @Input() queryParams: string;
+    @Input() queryParamsHandling = 'merge';
     @Input() disabled = false;
     @Input() busy = false;
     @Input() text = '';
