@@ -1,11 +1,5 @@
 <dexih-widget-vertical>
-    <dexih-widget 
-        title="Show all elements" 
-        [padding]="true" 
-        [showFilter]="true"
-        [showCloseButton]="true"
-        iconClass="fa fa-lg fa-fw fa-database"
-    >
+    <dexih-widget title="Show all elements" [padding]="true" [showFilter]="true" [showCloseButton]="true" iconClass="fa fa-lg fa-fw fa-database">
 
         <ng-template #header>
             header template
@@ -16,9 +10,9 @@
         </ng-template>
 
         <ng-template #tools>
-                tools template
+            tools template
         </ng-template>
-    
+
         <ng-template #subheader>
             subheader template
         </ng-template>
@@ -28,19 +22,24 @@
         </ng-template>
 
         the body of the widget
-    
+
     </dexih-widget>
 
-    <dexih-widget
-        title="just a footer"
-    >
-    
-    <ng-template #footer>
+    <dexih-widget title="just a footer">
+
+        <ng-template #footer>
             footer template
         </ng-template>
 
         something in the body
     </dexih-widget>
+
+    <dexih-widget title="waiting" loadingMessage="Loading the widget..." [showIf]="false">
+
+        
+    </dexih-widget>
+
+
 </dexih-widget-vertical>
 
 <dexih-widget-columns class="p-3">

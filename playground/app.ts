@@ -13,10 +13,10 @@ import { Component } from '@angular/core';
     public textValue2: string = null;
 
     public selectedItem3 = null;
-    public textValue3: string = 'static value';
+    public textValue3 = 'static value';
 
     public selectedItem4 = null;
-    public textValue4: string = 'the text';
+    public textValue4 = 'the text';
 
     public selectedItem5 = 'cat2 item2';
     public textValu54: string = null;

@@ -6,6 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
     selector: 'dexih-widget',
     templateUrl: './dexih-widget.component.html',
+    styleUrls: ['./dexih-widget.component.scss'],
     animations: [
         // trigger name for attaching this animation to an element using the [@triggerName] syntax
     trigger('fadeInAnimation', [
@@ -23,8 +24,8 @@ export class DexihWidgetComponent implements OnInit {
     @Input() public title: string;
     @Input() public subtitle: string;
     @Input() public iconClass: string;
-    @Input() public showIf: any = true;
-    @Input() public loadMessage = 'Loading...';
+    @Input() public showIf = true;
+    @Input() public loadingMessage = 'Loading...';
     @Input() public maxHeight: number;
     @Input() public showFilter = false;
     @Input() public showCloseButton = false;
