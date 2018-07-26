@@ -43,6 +43,8 @@ export class DexihWidgetComponent implements OnInit {
 
     filterControl = new FormControl();
 
+    public state = 'open';
+
     constructor() {
     }
 
