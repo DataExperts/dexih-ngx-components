@@ -18,6 +18,7 @@ export class DexihButtonDropDownComponent {
     @Input() badgeClass = '';
     @Input() hideCarrot = false;
     @Input() compact = false;
+    @Input() autoCompact = true;
     @Input() autoClose = true;
     @Input() isOpen = false;
 
