@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-component',
@@ -12,20 +12,28 @@ import { Component } from '@angular/core';
     public selectedItem2 = 1;
     public textValue2: string = null;
 
-    public selectedItem3 = null;
+    public selectedItem3: string = null;
     public textValue3 = 'static value';
 
-    public selectedItem4 = null;
+    public selectedItem4: string = null;
     public textValue4 = 'the text';
 
     public selectedItem5 = 'cat2 item2';
-    public textValu54: string = null;
+    public textValue5: string = null;
 
     public close() {
-        alert('close click');
+      alert('close click');
     }
 
     public show(value: string) {
       alert(value);
+    }
+
+    public cancelled() {
+      alert('cancelled');
+    }
+
+    public progress() {
+      alert('progress');
     }
   }
