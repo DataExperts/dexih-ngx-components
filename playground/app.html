@@ -44,6 +44,12 @@
 
 <dexih-widget-columns class="p-3">
         <dexih-widget title="Progress" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
+            <dexih-progressbar width="100px" class="m-3" [animate]="true" [showCancel]="true" (cancelled)="cancelled()" (progressClick)="progress()"
+                value="90" type="success">
+                smaller width
+            </dexih-progressbar>
+
+
             <dexih-progressbar class="m-3" [animate]="true" [showCancel]="true" (cancelled)="cancelled()" (progressClick)="progress()"
                 value="0" type="success">
                 Not started
