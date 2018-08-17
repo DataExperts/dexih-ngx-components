@@ -36,4 +36,8 @@ import { Component, OnInit } from '@angular/core';
     public progress() {
       alert('progress');
     }
+
+    public selectChange(value: string) {
+      alert('selected - ' + value);
+    }
   }

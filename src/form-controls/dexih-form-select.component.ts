@@ -251,7 +251,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     }
 
     selectItem(selectedItem: any, hideDropdown = true) {
-        this.needsUpdate = true;
+        this.needsUpdate = !hideDropdown;
 
         this.selectedItem = selectedItem;
         if (selectedItem) {

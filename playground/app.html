@@ -121,7 +121,7 @@
                 <div>enableTextEntry=true</div>
                 <div>selected item: {{selectedItem}}</div>
                 <div>text value: {{textValue}}</div>
-                <form-select name="formSelect" label="Simple Select" [items]="['item1', 'item2','item3']" [enableTextEntry]="true" [(ngModel)]="selectedItem" [ngModelOptions]="{standalone: true}" [(textValue)]="textValue" ></form-select>
+                <form-select name="formSelect" label="Simple Select" [items]="['item1', 'item2','item3']" (ngModelChange)="selectChange($event)" [enableTextEntry]="true" [(ngModel)]="selectedItem" [ngModelOptions]="{standalone: true}" [(textValue)]="textValue" ></form-select>
                 
                 <form-select label="No Filter" [items]="['item1', 'item2','item3']" [enableFilter]="false"></form-select>
                 <form-select label="Default Value" [allowNullSelect]="true" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
