@@ -127,6 +127,9 @@
                 <form-select label="Default Value" [allowNullSelect]="true" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
                 
                 <form-select label="No Items" [items]="[]" [enableTextEntry]="true" iconClass="fa fa-pie-chart"></form-select>
+
+                <div>selected item key: {{selectedItem0}}</div>
+                <form-select label="Selected Item 0" [items]="[0, 1, 2]" [(ngModel)]="selectedItem0" [ngModelOptions]="{standalone: true}"  ></form-select>
                 
                 <div>enableTextEntry=false</div>
                 <div>selected item key: {{selectedItem2}}</div>

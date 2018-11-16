@@ -75,6 +75,9 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
      }
 
      ngOnInit() {
+
+        console.log('init ' + this.value + ', ' + this.items.join(','));
+
         // monitor changes to the filter control, and update if updated after 500ms.
         this.manualSubscription = this.manualControl.valueChanges
             .subscribe(newValue => {
@@ -85,11 +88,11 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                     this.selectedName = this.textValue;
 
                     let foundItem;
-                    if (newValue && this.enableTextEntryMatch) {
+                    if (this.hasValue(newValue) && this.enableTextEntryMatch) {
                         if (this.itemName) {
                             foundItem = this.flattenedItems
                                 .find(c => (<string>c[this.itemName]).toLocaleLowerCase() === newValue.toLowerCase());
-                            if (foundItem) {
+                            if (this.hasValue(foundItem)) {
                                 this.selectedItem = foundItem;
                                 this.doManualControlUpdate = false;
                                 this.textValue = foundItem[this.itemName];
@@ -105,7 +108,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                             }
                         } else {
                             foundItem = this.flattenedItems.find(c => (<string>c).toLocaleLowerCase() === newValue.toLowerCase());
-                            if (foundItem) {
+                            if (this.hasValue(foundItem)) {
                                 this.selectedItem = foundItem;
                                 this.doManualControlUpdate = false;
                                 this.textValue = foundItem;
@@ -158,6 +161,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     }
 
     hasChanged($event: any) {
+        console.log('hasChanged ' + this.value);
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
@@ -171,9 +175,16 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.onTouched = fn;
     }
 
+    hasValue(value): boolean {
+        let result = typeof(value) !== 'undefined' && value !== null;
+        console.log('hasValue ' + value + ', result: ' + result);
+        return result;
+    }
+
     writeValue(value: any) {
+        console.log('writeValue ' + value + ', ' + this.items.join(','));
         this.selectedItem = null;
-        if (value) {
+        if (this.hasValue(value)) {
             this.value = value;
             this.setSelectedItem(this.value, this.items);
         } else {
@@ -198,7 +209,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                         });
                     }
                 } else {
-                    if (value && !this.selectedItem) {
+                    if (this.hasValue(value) && !this.hasValue(this.selectedItem)) {
                         this.setSelectedItem(value, childItems);
                     }
                 }
@@ -207,8 +218,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     }
 
     updateValueFromItem(item) {
-        if (item) {
-            if (this.itemKey) {
+        if (this.hasValue(item)) {
+            if (this.hasValue(this.itemKey)) {
                 this.value = item[this.itemKey];
             } else {
                 this.value = item;
@@ -254,10 +265,10 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         this.needsUpdate = !hideDropdown;
 
         this.selectedItem = selectedItem;
-        if (selectedItem) {
+        if (this.hasValue(selectedItem)) {
             this.updateValueFromItem(selectedItem);
 
-            if (this.itemName) {
+            if (this.hasValue(this.itemName)) {
                 this.selectedName = selectedItem[this.itemName];
             } else {
                 this.selectedName = selectedItem;
@@ -280,8 +291,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     }
 
     private setSelectedItem(value: any, items: Array<any>) {
-        if (this.itemKey) {
-            if (value && items) {
+        if (this.hasValue(this.itemKey)) {
+            if (this.hasValue(value) && items) {
                 this.selectedItem = items.find(c => c[this.itemKey] === value);
             } else {
                 this.selectedItem = value;
@@ -290,8 +301,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             this.selectedItem = value;
         }
 
-        if (this.itemName) {
-            if (value && items) {
+        if (this.hasValue(this.itemName)) {
+            if (this.hasValue(value) && items) {
                 if (this.selectedItem) {
                     this.selectedName = this.selectedItem[this.itemName];
                 }
@@ -349,7 +360,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
                 if (found) {
                     nextItem = item;
                 }
-                if (this.itemName && item[this.itemName].toLowerCase() === this.selectedName.toLowerCase()) {
+                if (this.hasValue(this.itemName) && item[this.itemName].toLowerCase() === this.selectedName.toLowerCase()) {
                     found = true;
                 } else if (!this.itemName && item.toLowerCase() === this.selectedName.toLowerCase()) {
                     found = true;
@@ -357,7 +368,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             }
         });
 
-        if (!nextItem && filteredItems.length > 0) {
+        if (!this.hasValue(nextItem) && filteredItems.length > 0) {
             nextItem = filteredItems[0];
         }
 
@@ -412,10 +423,10 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
             // for text entry enabeld, just set the current value and emit.
             this.value = this.selectedItem;
             this.textValueChange.emit(this.textValue);
-        } else if (!this.selectedItem) {
+        } else if (!this.hasValue(this.selectedItem)) {
             // no selected item, then revert to previous one.
             this.doManualControlUpdate = false;
-            if (this.itemName && this.value) {
+            if (this.hasValue(this.itemName) && this.hasValue(this.value)) {
                 let item = this.flattenedItems.find(c => c[this.itemKey] === this.value);
                 if (item) {
                     this.textValue = item[this.itemName];

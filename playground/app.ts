@@ -4,7 +4,9 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-component',
     templateUrl: './app.html'
   })
-  export class AppComponent {
+  export class AppComponent implements OnInit {
+
+    public selectedItem0 = 0;
 
     public selectedItem: string;
     public textValue = 'text value';
@@ -20,6 +22,9 @@ import { Component, OnInit } from '@angular/core';
 
     public selectedItem5 = 'cat2 item2';
     public textValue5: string = null;
+
+    ngOnInit() {
+    }
 
     public close() {
       alert('close click');
