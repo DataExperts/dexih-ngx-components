@@ -8,6 +8,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccessor {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() iconClass: string;
     @Input() errors: string;

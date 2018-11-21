@@ -14,6 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class DexihFormInputComponent implements ControlValueAccessor {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() placeholder: string;
     @Input() iconClass: string;

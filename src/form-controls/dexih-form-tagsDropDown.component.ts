@@ -12,6 +12,7 @@ import { SharedFunctions, ListItem } from './shared-functions';
 })
 export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnChanges {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() placeholder: string;
     @Input() iconClass: string;
@@ -48,49 +49,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     constructor() { }
 
     ngOnChanges() {
-        let items: Array<any>;
-        if (this.sortItems) {
-            items = this.items.sort((a, b) => {
-                let aLabel = this.sharedFunctions.fetchFromObject(a, this.itemName);
-                let bLabel = this.sharedFunctions.fetchFromObject(b, this.itemName);
-                if (aLabel > bLabel) {
-                    return 1;
-                }
-                if (aLabel < aLabel) {
-                    return -1;
-                }
-                return 0;
-            });
-        } else {
-            items = this.items;
-        }
-
-        this.sortedItems = items.map(c => {
-            return {
-                label: this.sharedFunctions.fetchFromObject(c, this.itemName),
-                key: this.sharedFunctions.fetchFromObject(c, this.itemKey),
-                title: this.sharedFunctions.fetchFromObject(c, this.itemTitle),
-                item: c
-            };
-        });
-
-        this.labels = [];
-        this.value.forEach(item => {
-            let itemLookup: string;
-            if (this.returnKeys) {
-                itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === item);
-            } else {
-                itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey)
-                    === this.sharedFunctions.fetchFromObject(item, this.itemKey));
-            }
-
-            if (itemLookup) {
-                this.labels.push(this.sharedFunctions.fetchFromObject(itemLookup, this.itemName));
-            } else {
-                this.labels.push(item);
-            }
-        });
-
+       // this.updateLabels();
         this.writeValue(this.value);
     }
 
@@ -109,12 +68,61 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     }
 
     writeValue(value) {
-        // if (value) {
-            this.value = value;
-        // }
+        this.value = value;
+        this.updateLabels();
     }
 
-    selectItem(selectedItem: ListItem) {
+    updateLabels() {
+        if (this.value === null || typeof(this.value) === undefined) {
+            this.sortedItems = [];
+            this.labels = [];
+        } else {
+            let items: Array<any>;
+            if (this.sortItems) {
+                items = this.items.sort((a, b) => {
+                    let aLabel = this.sharedFunctions.fetchFromObject(a, this.itemName);
+                    let bLabel = this.sharedFunctions.fetchFromObject(b, this.itemName);
+                    if (aLabel > bLabel) {
+                        return 1;
+                    }
+                    if (aLabel < aLabel) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            } else {
+                items = this.items;
+            }
+
+            this.sortedItems = items.map(c => {
+                return {
+                    label: this.sharedFunctions.fetchFromObject(c, this.itemName),
+                    key: this.sharedFunctions.fetchFromObject(c, this.itemKey),
+                    title: this.sharedFunctions.fetchFromObject(c, this.itemTitle),
+                    item: c
+                };
+            });
+
+            this.labels = [];
+            this.value.forEach(item => {
+                let itemLookup: string;
+                if (this.returnKeys) {
+                    itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === item);
+                } else {
+                    itemLookup = this.items.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey)
+                        === this.sharedFunctions.fetchFromObject(item, this.itemKey));
+                }
+
+                if (itemLookup) {
+                    this.labels.push(this.sharedFunctions.fetchFromObject(itemLookup, this.itemName));
+                } else {
+                    this.labels.push(item);
+                }
+            });
+        }
+    }
+
+    selectItem(selectedItem: ListItem, autoClose: boolean) {
         if (selectedItem) {
             let item: any;
             item = this.value.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === selectedItem.key);
@@ -129,7 +137,10 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
-//        this.dropdown.hide();
+
+        if (autoClose) {
+            this.dropdown.hide();
+        }
     }
 
     remove(index) {

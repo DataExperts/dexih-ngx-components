@@ -11,6 +11,7 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS,  }
 })
 export class DexihFormDateComponent implements ControlValueAccessor {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() placeholder = 'Enter date (yyyy-mm-dd)';
     @Input() iconClass: string;

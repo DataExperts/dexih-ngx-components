@@ -23,6 +23,8 @@ import { Component, OnInit } from '@angular/core';
     public selectedItem5 = 'cat2 item2';
     public textValue5: string = null;
 
+    public selectedTags = [{key: 1, name: 'item1'}, {key: 3, name: 'item3'}];
+
     ngOnInit() {
     }
 

@@ -18,6 +18,7 @@ export enum eDayOfWeek {
 })
 export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, AfterViewInit {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() errors: string;
     @Input() value: eDayOfWeek[];

@@ -1,4 +1,4 @@
-<div [ngClass]="{'form-group': border}">
+<div>
     <label *ngIf="label" [for]="id">{{label}}
         <ng-content></ng-content>
     </label>
@@ -7,6 +7,11 @@
 
     <div [ngClass]="{'border rounded': border, 'border-danger': errors, 'border-success': !errors && isDirty}">
         <div class="input-group">
+            <div *ngIf="labelLeft" class="input-group-prepend">
+                <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}"> {{labelLeft}}</span>
+            </div>
+
+    
             <div *ngFor="let item of value" class="border rounded bg-light m-1">
                 {{item}}
                 <button (click)="remove(item)" type="button" class="close" aria-label="Close">

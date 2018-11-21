@@ -13,6 +13,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, OnDestroy, OnChanges {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() errors: string;
     @Input() value: any;
@@ -75,9 +76,6 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
      }
 
      ngOnInit() {
-
-        console.log('init ' + this.value + ', ' + this.items.join(','));
-
         // monitor changes to the filter control, and update if updated after 500ms.
         this.manualSubscription = this.manualControl.valueChanges
             .subscribe(newValue => {
@@ -161,7 +159,6 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     }
 
     hasChanged($event: any) {
-        console.log('hasChanged ' + this.value);
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
@@ -177,12 +174,10 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
     hasValue(value): boolean {
         let result = typeof(value) !== 'undefined' && value !== null;
-        console.log('hasValue ' + value + ', result: ' + result);
         return result;
     }
 
     writeValue(value: any) {
-        console.log('writeValue ' + value + ', ' + this.items.join(','));
         this.selectedItem = null;
         if (this.hasValue(value)) {
             this.value = value;

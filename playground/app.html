@@ -86,7 +86,7 @@
 
             <form>
                 <form-input placeholder="No labels"></form-input>
-                <form-input label="input label" note="a note to describe the input" placeholder="input something"></form-input>
+                <form-input label="input label" labelLeft="label left" note="a note to describe the input" placeholder="input something"></form-input>
                 <form-input label="input label" note="a note to describe the input" placeholder="input with icon" iconClass="fa fa-pie-chart"></form-input>
                 <form-input label="input with error" note="a note to describe the input" errors="this is invalid" placeholder="input something"
                     iconClass="fa fa-pie-chart"></form-input>
@@ -102,12 +102,20 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col">
+                        <form-input labelLeft="side by side" placeholder="input something" iconClass="fa fa-pie-chart"></form-input>
+                    </div>
+                    <div class="col">
+                        <form-input labelLeft="side by side" placeholder="input something" iconClass="fa fa-pie-chart"></form-input>
+                    </div>
+                </div>
             </form>
         </dexih-widget>
 
         <dexih-widget title="Text Areas" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
-                <form-textarea label="edit shown" [isHidden]="false" value="a **bold** item, [a link](http://www.microsoft.com)"></form-textarea>
+                <form-textarea label="edit shown" [showCopy]="true" [isHidden]="false" value="a **bold** item, [a link](http://www.microsoft.com)"></form-textarea>
                 <form-textarea label="edit hidden" [isHidden]="true" value="a **bold** item"></form-textarea>
                 <form-textarea label="with errors" [isHidden]="true" value="a **bold** item" errors="the error"></form-textarea>
                 <form-textarea label="with note" [isHidden]="true" value="a **bold** item" note="a note describing the textarea"></form-textarea>
@@ -184,8 +192,10 @@
             <form>
                 <form-checkbox></form-checkbox>
                 <form-checkbox label="Simple Checkbox"></form-checkbox>
+                <form-checkbox label="Border" [border]="true"></form-checkbox>
                 <form-checkbox label="Checkbox with note" note="this describes the checkbox"></form-checkbox>
                 <form-checkbox label="Checkbox with error" errors="this checkbox has errors"></form-checkbox>
+                <form-checkbox label="Checkbox with error" [border]="true" errors="this checkbox has errors"></form-checkbox>
             </form>
         </dexih-widget>
         <dexih-widget title="Date" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
@@ -212,9 +222,12 @@
         </dexih-widget>
         <dexih-widget title="Tags DropDown" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
-                <form-tags-dropdown placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
+                <form-tags-dropdown placeholder="input tags" [items]="['item1', 'item2','item3']" ></form-tags-dropdown>
                 <form-tags-dropdown label="input tags" note="a note to describe the tags" placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
-                <form-tags-dropdown label="input tags" note="a note to describe the tags" placeholder="input tags" [items]="['item1', 'item2','item3']" [value]="['item1', 'item2']"></form-tags-dropdown>
+                <form-tags-dropdown label="input tags (2 selected)" note="a note to describe the tags" placeholder="input tags" [items]="['item1', 'item2','item3']" [value]="['item1', 'item2']"></form-tags-dropdown>
+                <form-tags-dropdown label="input tags (2 selected)" note="a note to describe the tags" placeholder="input tags" 
+                [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemKey="key" itemName="name"
+                [(ngModel)]="selectedTags" [ngModelOptions]="{standalone: true}"></form-tags-dropdown>
             </form>
         </dexih-widget>
             <dexih-widget title="Time" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
@@ -337,12 +350,24 @@
                 </dexih-widget>
         <dexih-widget title="Groups" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
-                <div class="input-group">
+                <form-select [border]="false" labelLeft="label left" class="form-control mb-1 p-0" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
+                <form-input [border]="false" labelLeft="label left" class="form-control mb-1 p-0" placeholder="input 1" ></form-input>
+                <div class="d-flex flex-wrap">
+                    <div class="flex-fill">
+                        <form-tags [border]="false" labelLeft="label left" class="form-control mb-1 p-0" placeholder="input 1"></form-tags>
+                    </div>
+                    <div class="flex-fill">
+                        <form-tags-dropdown [border]="false" labelLeft="label left" class="form-control mb-1 p-0" placeholder="input tags"
+                            [items]="['item1', 'item2','item3']"></form-tags-dropdown>
+                    </div>
+                </div>
+
+                <div class="input-group mb-1">
                     <form-input [border]="false" class="form-control p-0" placeholder="input 1" ></form-input>
                     <form-select [border]="false" class="form-control p-0" [items]="['item1', 'item2','item3']" [enableTextEntry]="true"></form-select>
                     <form-input [border]="false" class="form-control p-0" placeholder="input icon" iconClass="fa fa-pie-chart" ></form-input>
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-1">
                         <form-tags [border]="false" class="form-control p-0" placeholder="input 1" ></form-tags>
                         <form-tags-dropdown [border]="false" class="form-control p-0" placeholder="input tags" [items]="['item1', 'item2','item3']"></form-tags-dropdown>
                     </div>

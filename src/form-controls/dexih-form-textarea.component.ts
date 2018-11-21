@@ -17,6 +17,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 })
 export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor {
     @Input() label: string;
+    @Input() labelLeft: string;
     @Input() note: string;
     @Input() placeholder: string;
     @Input() iconClass = 'fa fa-comment';
@@ -28,8 +29,9 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
     @Input() showMarkdown = false;
     @Input() disabled = false;
     @Input() showPreview = true;
+    @Input() showCopy = false;
 
-    state: string;
+    // state: string;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
 
@@ -42,12 +44,12 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
 
      ngOnInit() {
          if ( this.hideToggle ) { this.isHidden = false; }
-         this.state = this.isHidden ? 'hide' : 'show';
+       //  this.state = this.isHidden ? 'hide' : 'show';
      }
 
      toggleState() {
          this.isHidden = !this.isHidden;
-         this.state = this.isHidden ? 'hide' : 'show';
+        // this.state = this.isHidden ? 'hide' : 'show';
      }
 
     hasChanged($event) {
@@ -70,14 +72,27 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
     }
 
     getRoute(event) {
+        let isLink = false;
         let element = event.target;
         while (element) {
             let link: string = element.getAttribute('href');
             if (link && ( link.startsWith('http://') || link.startsWith('https://'))) {
                 window.open(link);
+                isLink = true;
             }
             event.preventDefault();
             element = element.parentElement;
         }
+
+        // if a link was not selected, then open the edit.
+        if (!isLink) {
+            this.isHidden = false;
+        }
+    }
+
+    copy() {
+        let textArea = <HTMLTextAreaElement> document.getElementById(this.id);
+        textArea.select();
+        document.execCommand('copy');
     }
 }
