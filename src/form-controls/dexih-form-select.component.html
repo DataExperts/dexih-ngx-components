@@ -35,32 +35,16 @@
 
 
         <ul *dropdownMenu  class="dropdown-menu scrollable-menu" role="menu" style="width:100%">
-            <!-- <label *ngIf="enableTextEntry" class="input dropdown-header scrollable-menu-fixed  p-1">
-                <div class="input-group">
-                    <input type="text" class="form-control" [formControl]="manualControl" [placeholder]="textEntryNote" (keyup.enter)="onTextEntryEnter($event)" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <i class="icon-append fa fa-at"></i>
-                        </span>
-                    </div>
-                </div>
-            </label> -->
-
-            <!-- <div *ngIf="enableFilter" class="dropdown-header scrollable-menu-fixed p-1">
-                <div class="input-group">
-                    <input type="search" class="form-control" [formControl]="filterControl" placeholder="Filter list..." tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" style="width: 300px">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
-
             <ng-template [ngIf]="items && items.length > 0">
                 <li *ngIf="allowNullSelect" >
                     <a class="dropdown-item" [ngClass]="{'active': !selectedItem }" (click)="selectItem(null)">{{selectNullMessage}}</a>
                 </li>
+
+                <ng-template [ngIf]="textEntryItems && textEntryItems.length > 0">
+                    <li *ngFor="let item of textEntryItems"  class="scrollable-item" >
+                        <a class="dropdown-item" [ngClass]="{'active': selectedItem == item}"  (click)="selectText(item)"> {{item}}</a>
+                    </li>
+                </ng-template>
 
                 <ng-template [ngIf]="!childItems && !grandChildItems">
                     <li *ngFor="let item of sortedItems | filter: itemName: filterString"  class="scrollable-item" >

@@ -136,6 +136,7 @@
                 
                 <form-select label="No Items" [items]="[]" [enableTextEntry]="true" iconClass="fa fa-pie-chart"></form-select>
 
+
                 <div>selected item key: {{selectedItem0}}</div>
                 <form-select label="Selected Item 0" [items]="[0, 1, 2]" [(ngModel)]="selectedItem0" [ngModelOptions]="{standalone: true}"  ></form-select>
                 
@@ -179,6 +180,16 @@
                 {category: 'category3', items: ['cat3 item1', 'cat3 item2', 'cat3 item3']}
                 ]}]" grandParentName='region' parentName='category' grandChildItems='items' childItems='categories'
                 [(ngModel)]="selectedItem5" [(textValue)]="textValue5" [enableTextEntry]="true" [ngModelOptions]="{standalone: true}"></form-select>
+
+                <div>enableTextEntry=true</div>
+                <div>selected item key: {{selectedItem6}}</div>
+                <div>text value: {{textValue6}}</div>
+                <form-select label="Text Items" 
+                [items]="['item1', 'item2','item3']" 
+                [(ngModel)]="selectedItem6"  [ngModelOptions]="{standalone: true}"
+                [(textValue)]="textValue6" 
+                [textEntryItems]="['value1', 'value2', 'value3']" [enableTextEntry]="true" [enableFilter]="false"></form-select>
+
             </form>
 
             <form-select label="Select with note" [items]="[{key:1, name:'item1'}, {key:2, name:'item2'}, {key:3, name:'item3'}]" itemName='name'

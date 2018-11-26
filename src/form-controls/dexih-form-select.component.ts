@@ -31,6 +31,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() selectNullMessage = 'Select nothing';
     @Input() enableTextEntry = false; // allows text to be entered in addition to selected entries.
     @Input() enableTextEntryMatch = true; // keeps text entry in sync with the value variable.
+    @Input() textEntryItems = [];
     @Input() textEntryNote = 'Enter a value';
     @Input() textValue: string = null;
     @Input() border = true;
@@ -254,6 +255,14 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
         } else {
             this.flattenedItems = this.items;
         }
+    }
+
+    selectText(item: any) {
+        this.dropdown.toggle();
+        this.value = item;
+        this.textValue = item;
+        this.textValueChange.emit(this.textValue);
+        this.manualControl.setValue(item);
     }
 
     selectItem(selectedItem: any, hideDropdown = true) {
