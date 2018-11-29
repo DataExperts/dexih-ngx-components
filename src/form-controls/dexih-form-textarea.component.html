@@ -1,5 +1,5 @@
 <div>
-    <label *ngIf="label" [for]="id">
+    <label *ngIf="label" [for]="id" class="mt-1">
         {{label}}
         <a class="btn btn-outline-primary btn-sm" *ngIf="!hideToggle" (click)='toggleState()'>{{isHidden == true ? 'Edit' : 'Hide'}}</a>
         <ng-content></ng-content>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <small for="inputValue" *ngIf="note" class="form-text text-muted">
-            {{note}}
+            <markdown (click)="sharedFunctions.getRoute($event)" [data]="note"></markdown>
         </small>
     </div>
     <div *ngIf="showPreview && value">

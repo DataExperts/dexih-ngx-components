@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, EventEmitter, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-input',
@@ -31,6 +32,7 @@ export class DexihFormInputComponent implements ControlValueAccessor {
     isDirty = false;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     onChange: any = () => { };
     onTouched: any = () => { };

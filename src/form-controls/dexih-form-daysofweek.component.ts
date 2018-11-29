@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SharedFunctions } from './shared-functions';
 
 export enum eDayOfWeek {
     Sunday = <any>'Sunday',
@@ -26,6 +27,7 @@ export class DexihFormDaysOfWeekComponent implements ControlValueAccessor, After
     eDayOfWeek = eDayOfWeek;
     daysOfWeek = new Array<Boolean>(7);
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     onChange: any = () => { };
     onTouched: any = () => { };

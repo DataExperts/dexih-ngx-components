@@ -4,6 +4,7 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
 import { BsDropdownDirective } from 'ngx-bootstrap';
 import { Subscription, pipe } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-select',
@@ -44,6 +45,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @ViewChild('dropdown') dropdownElement: any;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     selectedItem: any;
     selectedName: string;

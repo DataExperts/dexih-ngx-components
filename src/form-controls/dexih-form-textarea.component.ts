@@ -1,6 +1,7 @@
 import { OnInit, Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-textarea',
@@ -32,6 +33,7 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
     @Input() showCopy = false;
 
     // state: string;
+    sharedFunctions = new SharedFunctions();
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
 
@@ -72,17 +74,7 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
     }
 
     getRoute(event) {
-        let isLink = false;
-        let element = event.target;
-        while (element) {
-            let link: string = element.getAttribute('href');
-            if (link && ( link.startsWith('http://') || link.startsWith('https://'))) {
-                window.open(link);
-                isLink = true;
-            }
-            event.preventDefault();
-            element = element.parentElement;
-        }
+        let isLink = this.sharedFunctions.getRoute(event);
 
         // if a link was not selected, then open the edit.
         if (!isLink) {

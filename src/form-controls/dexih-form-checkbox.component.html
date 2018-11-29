@@ -32,6 +32,6 @@
     </div>
 
     <small *ngIf="note" class="form-text text-muted">
-        {{note}}
+        <markdown (click)="sharedFunctions.getRoute($event)" [data]="note"></markdown>
     </small>
 </div>

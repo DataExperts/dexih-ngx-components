@@ -1,5 +1,6 @@
 import { OnInit, Component, forwardRef, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-time',
@@ -19,6 +20,7 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
     seconds: number;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     isDirty = false;
 

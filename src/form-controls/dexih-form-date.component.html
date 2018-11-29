@@ -1,7 +1,7 @@
 
 
 <div>
-    <label *ngIf="label" [for]="id">{{label}}
+    <label *ngIf="label" [for]="id" class="mt-1">{{label}}
         <ng-content></ng-content>
     </label>
 
@@ -26,6 +26,6 @@
     </div>
 
     <small *ngIf="note" class="form-text text-muted">
-        {{note}}
+        <markdown (click)="sharedFunctions.getRoute($event)" [data]="note"></markdown>
     </small>
 </div>

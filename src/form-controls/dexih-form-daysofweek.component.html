@@ -1,6 +1,6 @@
 
 <div class="form-group">
-    <label [for]="id">{{label}}
+    <label [for]="id" class="mt-1">{{label}}
         <a class="btn btn-outline-primary btn-sm" (click)="selectAllDays()">All</a> 
         <a class="btn btn-outline-primary btn-sm" (click)="selectNoDays()">None</a>
         <a class="btn btn-outline-primary btn-sm" (click)="selectWeekend()">Weekend</a>
@@ -45,6 +45,6 @@
 
 
     <small *ngIf="note" class="form-text text-muted">
-        {{note}}
+        <markdown (click)="sharedFunctions.getRoute($event)" [data]="note"></markdown>
     </small>
 </div>

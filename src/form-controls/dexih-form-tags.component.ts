@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, EventEmitter, Output, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-tags',
@@ -24,6 +25,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
 
     isDirty = false;
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     tag: string;
 

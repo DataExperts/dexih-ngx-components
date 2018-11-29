@@ -1,5 +1,6 @@
 import { OnInit, Component, forwardRef, Input, AfterViewInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS,  } from '@angular/forms';
+import { SharedFunctions } from './shared-functions';
 
 @Component({
     selector: 'form-date',
@@ -25,6 +26,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
     isDirty = false;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
+    sharedFunctions = new SharedFunctions();
 
     onChange: any = () => { };
     onTouched: any = () => { };

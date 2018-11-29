@@ -21,6 +21,22 @@ export class SharedFunctions {
 
         return value;
     }
+
+    public getRoute(event): boolean {
+        let isLink = false;
+        let element = event.target;
+        while (element) {
+            let link: string = element.getAttribute('href');
+            if (link && ( link.startsWith('http://') || link.startsWith('https://'))) {
+                window.open(link);
+                isLink = true;
+            }
+            event.preventDefault();
+            element = element.parentElement;
+        }
+
+        return isLink;
+    }
 }
 
 export class ListItem {
