@@ -34,6 +34,7 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Input() enableTextEntryMatch = true; // keeps text entry in sync with the value variable.
     @Input() textEntryItems = [];
     @Input() textEntryNote = 'Enter a value';
+    @Input() disabledNote = 'There are no items available for selection.';
     @Input() textValue: string = null;
     @Input() border = true;
     @Input() sortItems = false;
@@ -71,6 +72,10 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
 
     isDirty = false;
 
+    showDropDown = true;
+    disableInput = false;
+    placeholder: string;
+
     onChange: any = () => { };
     onTouched: any = () => { };
 
@@ -79,6 +84,19 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
      }
 
      ngOnInit() {
+
+        this.showDropDown = (this.items && this.items.length > 0) ||
+            (this.textEntryItems && this.textEntryItems.length > 0) ||
+            this.allowNullSelect;
+
+        this.disableInput = !this.showDropDown && !this.enableTextEntry;
+
+        if ((this.enableFilter && this.showDropDown) || this.enableTextEntry) {
+            this.placeholder = this.textEntryNote;
+        } else {
+            this.placeholder = this.disabledNote;
+        }
+
         // monitor changes to the filter control, and update if updated after 500ms.
         this.manualSubscription = this.manualControl.valueChanges
             .subscribe(newValue => {

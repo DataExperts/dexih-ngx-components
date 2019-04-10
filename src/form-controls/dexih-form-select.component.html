@@ -11,9 +11,9 @@
                 </div>
 
                 <input 
-                    [attr.disabled]="enableFilter || enableTextEntry ? null : ''" 
+                    [attr.disabled]="((enableFilter && showDropDown) || enableTextEntry) ? null : ''" 
                     [formControl]="manualControl" 
-                    [placeholder]="textEntryNote" 
+                    [placeholder]="placeholder" 
                     (keydown.arrowdown)="down()"
                     (keydown.arrowup)="up()"
                     (keyup.enter)="onTextEntryEnter($event)" 
@@ -24,7 +24,7 @@
 
                 <div class="input-group-append">
                     <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}">
-                        <i *ngIf="items && items.length > 0" class="icon-append fa fa-caret-down"></i>
+                        <i *ngIf="showDropDown" class="icon-append fa fa-caret-down"></i>
                         <i *ngIf="iconClass && (!items || items.length == 0) " class="icon-append {{iconClass}}"></i>
                     </span>
                 </div>
@@ -35,7 +35,7 @@
 
 
         <ul *dropdownMenu  class="dropdown-menu scrollable-menu" role="menu" style="width:100%">
-            <ng-template [ngIf]="items && items.length > 0">
+            <ng-template [ngIf]="showDropDown">
                 <li *ngIf="allowNullSelect" >
                     <a class="dropdown-item" [ngClass]="{'active': !selectedItem }" (click)="selectItem(null)">{{selectNullMessage}}</a>
                 </li>
