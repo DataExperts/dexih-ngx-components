@@ -116,6 +116,7 @@
         <dexih-widget title="Text Areas" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <form>
                 <form-textarea label="edit shown" [showCopy]="true" [isHidden]="false" value="a **bold** item, [a link](http://www.microsoft.com)"></form-textarea>
+                <form-textarea label="copy a key" [showCopy]="true" [isHidden]="true" [showPreview]="false" [disabled]="true" [rows]="1" value="abdefghijklmnopqrtruvwxyz"></form-textarea>
                 <form-textarea label="edit hidden" [isHidden]="true" value="a **bold** item"></form-textarea>
                 <form-textarea label="with errors" [isHidden]="true" value="a **bold** item" errors="the error"></form-textarea>
                 <form-textarea label="with note" [isHidden]="true" value="a **bold** item" note="a note describing the textarea"></form-textarea>

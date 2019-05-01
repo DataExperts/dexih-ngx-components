@@ -1,7 +1,12 @@
 <div>
     <label *ngIf="label" [for]="id" class="mt-1">
         {{label}}
-        <a class="btn btn-outline-primary btn-sm" *ngIf="!hideToggle" (click)='toggleState()'>{{isHidden == true ? 'Edit' : 'Hide'}}</a>
+        <a class="btn btn-outline-primary btn-sm" *ngIf="!hideToggle"
+            (click)='toggleState()'>{{isHidden == true ? (disabled ? 'Show' : 'Edit') : 'Hide'}}</a>
+        <a class="btn btn-outline-primary btn-sm ml-1" *ngIf="showCopy" (click)='copyMessage()'>
+            <i class="fa fa-copy"></i>
+            Copy
+        </a>
         <ng-content></ng-content>
     </label>
     <div [@slideDown]="isHidden ? 'hide' : 'show'">
@@ -9,18 +14,14 @@
             <div *ngIf="labelLeft" class="input-group-prepend">
                 <span class="input-group-text" [ngClass]="{'border-0 rounded-0': !border}"> {{labelLeft}}</span>
             </div>
-    
-            <textarea class="form-control" [id]="id" [disabled]="disabled" [rows]="rows" [(ngModel)]="value" (ngModelChange)="hasChanged($event)" [placeholder]="placeholder"
+
+            <textarea class="form-control" [id]="id" [disabled]="disabled" [rows]="rows" [(ngModel)]="value"
+                (ngModelChange)="hasChanged($event)" [placeholder]="placeholder"
                 [ngClass]="{'is-invalid': errors}"></textarea>
             <div *ngIf="iconClass" class="input-group-append">
                 <span class="input-group-text">
                     <i *ngIf="iconClass" class="icon-append {{iconClass}}"></i>
                 </span>
-            </div>
-            <div *ngIf="showCopy" class="input-group-append">
-                <button class="input-group-text" (click)="copy()">
-                    Copy
-                </button>
             </div>
             <div for="inputValue" *ngIf="errors" class="invalid-feedback">
                 {{ errors }}
