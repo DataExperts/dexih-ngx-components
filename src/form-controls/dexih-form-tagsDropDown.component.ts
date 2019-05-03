@@ -125,6 +125,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     selectItem(selectedItem: ListItem, autoClose: boolean) {
         if (selectedItem) {
             let item: any;
+            if (!this.value) { this.value = []; }
             item = this.value.find(c => this.sharedFunctions.fetchFromObject(c, this.itemKey) === selectedItem.key);
             if (this.returnKeys) {
                 item = this.sharedFunctions.fetchFromObject(item, this.itemKey);
@@ -144,7 +145,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     }
 
     remove(index) {
-        if (index >= 0) {
+        if (index >= 0 && this.value) {
             this.value.splice(index, 1);
             this.labels.splice(index, 1);
             this.hasChanged(null);

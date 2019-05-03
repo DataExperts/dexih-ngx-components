@@ -56,6 +56,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
 
     addTag() {
         if (this.tag) {
+            if (!this.value) { this.value = []; }
             const index = this.value.findIndex(c => c === this.tag);
             if (index === -1) {
                 this.value.push(this.tag);
@@ -72,6 +73,7 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
     }
 
     remove(item) {
+        if (!this.value) { return; }
         const index = this.value.findIndex(c => c === item);
         if (index >= 0) {
             this.value.splice(index, 1);
