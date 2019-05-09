@@ -1,5 +1,5 @@
     <div class="card" [@fadeInAnimation]='state'>
-        <div class="card-header" *ngIf="title || iconClass || headerTemplate || showFilter">
+        <div [ngClass]="['card-header', headerClass]" *ngIf="title || iconClass || headerTemplate || showFilter">
             <div class="d-flex flex-row p-0">
 
                 <span>
@@ -24,8 +24,8 @@
                         </div>
                 </div>
                     <button *ngIf="showExpandButton" type="button" class="close ml-2" (click)="isExpanded=!isExpanded" aria-label="Expand">
-                        <i *ngIf="!isExpanded" class="fa fa-angle-double-down" title="Collapse" ></i>
-                        <i *ngIf="isExpanded" class="fa fa-angle-double-up" title="Expand"></i>
+                        <i *ngIf="!isExpanded" class="fa fa-angle-double-down" title="Expand" ></i>
+                        <i *ngIf="isExpanded" class="fa fa-angle-double-up" title="Collapse"></i>
                     </button>
                     <button *ngIf="showCloseButton" type="button" class="close ml-2" (click)="doClose()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -34,10 +34,10 @@
             </div>
         </div>
 
-        <div class="card-header bg-light" *ngIf="subtitleTemplate || subtitle || toolsTemplate">
+        <div [ngClass]="['card-header', subTitleClass]" *ngIf="subTitleTemplate || subTitle || toolsTemplate">
                 <div class="d-flex flex-row">
-                    <div class="card-subtitle">{{subtitle}}</div>
-                    <ng-template [ngTemplateOutlet]="subtitleTemplate">
+                    <div class="card-subTitle">{{subtitle}}</div>
+                    <ng-template [ngTemplateOutlet]="subTitleTemplate">
                     </ng-template>
                     <div class="d-flex ml-auto">
                         <ng-template [ngTemplateOutlet]="toolsTemplate">
@@ -46,13 +46,13 @@
                 </div>
             </div>
 
-            <div class="card-header" *ngIf="subheaderTemplate">
-                <ng-template [ngTemplateOutlet]="subheaderTemplate">
+            <div [ngClass]="['card-header', subHeaderClass]" *ngIf="subHeaderTemplate">
+                <ng-template [ngTemplateOutlet]="subHeaderTemplate">
                 </ng-template>
             </div>
     
 
-        <div class="card-body" [ngClass]="{'px-0 py-0': !padding}">
+        <div [ngClass]="['card-body', bodyClass]" [ngClass]="{'px-0 py-0': !padding}">
             <div *ngIf="!showIf">
                 <div class="table-loader-container">
                     <div class="table-loader"></div>
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div *ngIf="footerTemplate" class="card-footer">
+        <div *ngIf="footerTemplate" [ngClass]="['card-body', footerClass]">
             <ng-template [ngTemplateOutlet]="footerTemplate">
             </ng-template>
         </div>

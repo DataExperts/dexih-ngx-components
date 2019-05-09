@@ -27,8 +27,13 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class DexihWidgetComponent implements OnInit {
     @Input() public title: string;
-    @Input() public subtitle: string;
+    @Input() public subTitle: string;
     @Input() public iconClass: string;
+    @Input() public headerClass = '';
+    @Input() public subTitleClass = 'bg-light';
+    @Input() public subHeaderClass = '';
+    @Input() public bodyClass = '';
+    @Input() public footerClass = '';
     @Input() public showIf = true;
     @Input() public loadingMessage = 'Loading...';
     @Input() public maxHeight: number;
@@ -44,8 +49,8 @@ export class DexihWidgetComponent implements OnInit {
 
     @ContentChild('tools') toolsTemplate: TemplateRef<any>;
     @ContentChild('header') headerTemplate: TemplateRef<any>;
-    @ContentChild('subtitle') subtitleTemplate: TemplateRef<any>;
-    @ContentChild('subheader') subheaderTemplate: TemplateRef<any>;
+    @ContentChild('subTitle') subTitleTemplate: TemplateRef<any>;
+    @ContentChild('subHeader') subHeaderTemplate: TemplateRef<any>;
     @ContentChild('footer') footerTemplate: TemplateRef<any>;
 
     filterControl = new FormControl();

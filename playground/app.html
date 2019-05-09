@@ -5,7 +5,7 @@
             header template
         </ng-template>
 
-        <ng-template #subtitle>
+        <ng-template #subTitle>
             subtitle template
         </ng-template>
 
@@ -13,8 +13,8 @@
             tools template
         </ng-template>
 
-        <ng-template #subheader>
-            subheader template
+        <ng-template #subHeader>
+            sub-header template
         </ng-template>
 
         <ng-template #footer>
@@ -24,6 +24,38 @@
         the body of the widget
 
     </dexih-widget>
+
+    <dexih-widget title="Show all with different classes" 
+        headerClass="text-white bg-success" 
+        subTitleClass="text-white bg-primary"
+        subHeaderClass="text-white bg-warning"
+        bodyClass="text-white bg-secondary"
+        footerClass="text-white bg-danger"
+        [padding]="true" [showFilter]="true" [showCloseButton]="true" iconClass="fa fa-lg fa-fw fa-database">
+
+            <ng-template #header>
+                header template
+            </ng-template>
+    
+            <ng-template #subTitle>
+                subtitle template
+            </ng-template>
+    
+            <ng-template #tools>
+                tools template
+            </ng-template>
+    
+            <ng-template #subHeader>
+                sub-header template
+            </ng-template>
+    
+            <ng-template #footer>
+                footer template
+            </ng-template>
+    
+            the body of the widget
+    
+        </dexih-widget>
 
     <dexih-widget title="just a footer">
 
