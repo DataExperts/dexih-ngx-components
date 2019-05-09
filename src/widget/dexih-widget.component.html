@@ -52,19 +52,21 @@
             </div>
     
 
-        <div [ngClass]="['card-body', bodyClass]" [ngClass]="{'px-0 py-0': !padding}">
-            <div *ngIf="!showIf">
-                <div class="table-loader-container">
-                    <div class="table-loader"></div>
-                    <div name="dexih-data-loading" class="table-loader-text">{{loadingMessage}}</div>
+        <div [@slideDown]="isExpanded ? 'show' : 'hide'">
+            <div [ngClass]="['card-body', bodyClass]" [ngClass]="{'px-0 py-0': !padding}">
+                <div *ngIf="!showIf">
+                    <div class="table-loader-container">
+                        <div class="table-loader"></div>
+                        <div name="dexih-data-loading" class="table-loader-text">{{loadingMessage}}</div>
+                    </div>
                 </div>
-            </div>
-            <div *ngIf="showIf" [@slideDown]="isExpanded ? 'show' : 'hide'">
-                <ng-content></ng-content>
+                <div *ngIf="showIf">
+                    <ng-content></ng-content>
+                </div>
             </div>
         </div>
 
-        <div *ngIf="footerTemplate" [ngClass]="['card-body', footerClass]">
+        <div *ngIf="footerTemplate" [ngClass]="['card-footer', footerClass]">
             <ng-template [ngTemplateOutlet]="footerTemplate">
             </ng-template>
         </div>
