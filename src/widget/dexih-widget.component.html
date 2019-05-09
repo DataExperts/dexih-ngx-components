@@ -38,7 +38,7 @@
 
         <div [ngClass]="['card-header', subTitleClass]" *ngIf="subTitleTemplate || subTitle || toolsTemplate">
                 <div class="d-flex flex-row">
-                    <div class="card-subTitle">{{subtitle}}</div>
+                    <div class="card-subtitle">{{subtitle}}</div>
                     <ng-template [ngTemplateOutlet]="subTitleTemplate">
                     </ng-template>
                     <div class="d-flex ml-auto">
@@ -54,7 +54,7 @@
             </div>
     
 
-        <div [@slideDown]="isExpanded ? 'show' : 'hide'">
+        <div *ngIf="isExpanded" [@slideInOut]>
             <div [ngClass]="['card-body', bodyClass]" [ngClass]="{'px-0 py-0': !padding}">
                 <div *ngIf="!showIf">
                     <div class="table-loader-container">
