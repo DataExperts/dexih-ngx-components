@@ -14,7 +14,7 @@
                     </div>
 
                     <div *ngIf="showFilter" class=" mr-3 ml-3">
-                    <div  class="input-group">
+                        <div class="input-group">
                             <span class="input-group-addon input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fa fa-search"></i>
@@ -22,12 +22,14 @@
                             </span>
                             <input [formControl]="filterControl" type="text" placeholder="Filter the items">
                         </div>
-                </div>
-                    <button *ngIf="showExpandButton" type="button" class="close ml-2" (click)="isExpanded=!isExpanded" aria-label="Expand">
-                        <i *ngIf="!isExpanded" class="fa fa-angle-double-down" title="Expand" ></i>
+                    </div>
+                    <button *ngIf="showExpandButton" type="button" class="close ml-2" (click)="isExpanded=!isExpanded"
+                        aria-label="Expand" [ngClass]="[headerClass]">
+                        <i *ngIf="!isExpanded" class="fa fa-angle-double-down" title="Expand"></i>
                         <i *ngIf="isExpanded" class="fa fa-angle-double-up" title="Collapse"></i>
                     </button>
-                    <button *ngIf="showCloseButton" type="button" class="close ml-2" (click)="doClose()" aria-label="Close">
+                    <button *ngIf="showCloseButton" type="button" class="close ml-2" (click)="doClose()"
+                        aria-label="Close" [ngClass]="[headerClass]">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

@@ -31,7 +31,7 @@
         subHeaderClass="text-white bg-warning"
         bodyClass="text-white bg-secondary"
         footerClass="text-white bg-danger"
-        [padding]="true" [showFilter]="true" [showCloseButton]="true" iconClass="fa fa-lg fa-fw fa-database">
+        [padding]="true" [showFilter]="true" [showCloseButton]="true" [showExpandButton]="true" iconClass="fa fa-lg fa-fw fa-database">
 
             <ng-template #header>
                 header template
@@ -57,7 +57,7 @@
     
         </dexih-widget>
 
-    <dexih-widget title="just a footer">
+    <dexih-widget title="just a footer" bodyClass="text-white bg-secondary">
 
         <ng-template #footer>
             footer template
@@ -68,9 +68,12 @@
 
     <dexih-widget title="waiting" loadingMessage="Loading the widget..." [showIf]="false">
 
-        
     </dexih-widget>
 
+    <dexih-widget title="just body" bodyClass="text-white bg-secondary">
+
+    </dexih-widget>
+    
 </dexih-widget-vertical>
 
 <dexih-widget-columns class="p-3">
