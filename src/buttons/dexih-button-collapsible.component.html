@@ -1,0 +1,18 @@
+<div class="btn-group">
+  <button type="button" (click)="onClick($event)" [disabled]="disabled" [ngClass]="['btn', 'btn-primary', buttonClass]" [title]="title">
+    <i *ngIf="busy" class="fa fa-spin fa-cog"></i>
+    <i [class]="iconClass"></i>
+    <span class="d-none d-md-inline">
+        &nbsp;{{text}}
+    </span>
+    <span *ngIf="badge" class="badge" [ngClass]="[badgeClass]">{{badge}}</span>
+  </button>  
+  <button type="button" [disabled]="disabled" [ngClass]="['btn', 'btn-primary']" title="Toggle Expand" (click)="isExpanded=!isExpanded">
+      <i *ngIf="!isExpanded" class="fa fa-angle-double-down" title="Collapse" ></i>
+      <i *ngIf="isExpanded" class="fa fa-angle-double-up" title="Expand"></i>
+    </button>
+</div>
+<div [@slideDown]="isExpanded ? 'show' : 'hide'">
+    <ng-content></ng-content>
+  </div>
+

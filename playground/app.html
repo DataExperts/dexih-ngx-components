@@ -1,5 +1,5 @@
 <dexih-widget-vertical>
-    <dexih-widget title="Show all elements" [padding]="true" [showFilter]="true" [showCloseButton]="true" iconClass="fa fa-lg fa-fw fa-database">
+    <dexih-widget title="Show all elements" [padding]="true" [showFilter]="true" [showCloseButton]="true" iconClass="fa fa-lg fa-fw fa-database" [showExpandButton]="true">
 
         <ng-template #header>
             header template
@@ -38,7 +38,6 @@
 
         
     </dexih-widget>
-
 
 </dexih-widget-vertical>
 
@@ -361,7 +360,9 @@
                               </div>
                             </dexih-button-dropdown>
 
-
+                            <dexih-button-collapsible text="collapsible">
+                                here is the content.
+                        </dexih-button-collapsible>
                     </form>
                 </dexih-widget>
         <dexih-widget title="Groups" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">

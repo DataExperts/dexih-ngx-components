@@ -17,6 +17,11 @@ import { debounceTime } from 'rxjs/operators';
             // animation and styles at end of transition
             animate('.3s', style({ opacity: 1 }))
         ]),
+    ]),
+    trigger('slideDown', [
+        state('hide', style({ height: 0, overflow: 'hidden' })),
+        state('show', style({ height: '*', overflow: 'unset' })),
+        transition('hide <=> show', animate('200ms ease-in')),
     ])
     ]
 })
@@ -30,6 +35,8 @@ export class DexihWidgetComponent implements OnInit {
     @Input() public showFilter = false;
     @Input() public showCloseButton = false;
     @Input() public padding = false;
+    @Input() public showExpandButton = false;
+    @Input() public isExpanded = true;
 
     @Output() public filterString = new EventEmitter<string>();
 
