@@ -1,4 +1,4 @@
-    <div class="card" [@fadeInAnimation]='state'>
+    <div class="card" [@fadeInAnimation]='state' removeWrapper>
         <div [ngClass]="['card-header', headerClass]" *ngIf="title || iconClass || headerTemplate || showFilter">
             <div class="d-flex flex-row p-0">
 
@@ -55,7 +55,7 @@
     
 
         <div *ngIf="isExpanded" [@slideInOut]>
-            <div [ngClass]="['card-body', bodyClass]" [ngClass]="{'px-0 py-0': !padding}">
+            <div [ngClass]="['card-body', bodyClass]" [ngStyle]="{'padding': padding ? null : 0}">
                 <div *ngIf="!showIf">
                     <div class="table-loader-container">
                         <div class="table-loader"></div>

@@ -6,6 +6,7 @@ import { DexihButtonsModule } from './buttons/dexihButtons.module';
 import { DexihFormControlsModule } from './form-controls/dexih-form-controls.module';
 import { NgxMdModule } from 'ngx-md';
 import { DexihProgressModule } from './progress/dexih-progress.module';
+import { DexihUtilsModule } from './utils/dexih-utils.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { DexihProgressModule } from './progress/dexih-progress.module';
     DexihWidgetModule,
     DexihButtonsModule,
     DexihFormControlsModule,
-    DexihProgressModule
+    DexihProgressModule,
   ],
   declarations: [
   ],
@@ -23,7 +24,8 @@ import { DexihProgressModule } from './progress/dexih-progress.module';
     DexihWidgetModule,
     DexihButtonsModule,
     DexihFormControlsModule,
-    DexihProgressModule
+    DexihProgressModule,
+    DexihUtilsModule
   ]
 })
 export class DexihComponentsModule {

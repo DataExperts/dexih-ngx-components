@@ -5,24 +5,29 @@ import { DexihWidgetComponent } from './dexih-widget.component';
 import { DexihWidgetColumnsComponent } from './dexih-widget-columns.component';
 import { DexihWidgetDeckComponent } from './dexih-widget-deck.component';
 import { DexihWidgetVerticalComponent } from './dexih-widget-vertical.component';
+import { DexihWidgetGroupComponent } from './dexih-widget-group.component';
+import { DexihUtilsModule } from '../utils/dexih-utils.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DexihUtilsModule
   ],
   declarations: [
     DexihWidgetComponent,
     DexihWidgetColumnsComponent,
     DexihWidgetDeckComponent,
-    DexihWidgetVerticalComponent
+    DexihWidgetVerticalComponent,
+    DexihWidgetGroupComponent,
   ],
   exports: [
     DexihWidgetComponent,
     DexihWidgetColumnsComponent,
     DexihWidgetDeckComponent,
-    DexihWidgetVerticalComponent
+    DexihWidgetVerticalComponent,
+    DexihWidgetGroupComponent,
   ],
 })
 export class DexihWidgetModule {

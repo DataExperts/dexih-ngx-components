@@ -15,7 +15,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class DexihButtonCollapsibleComponent implements OnInit {
-    @Input() buttonClass = 'btn-default';
+    @Input() buttonClass = 'btn btn-primary';
     @Input() iconClass: string;
     @Input() title: string;
     @Input() routerLink: string;

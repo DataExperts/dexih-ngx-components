@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input, EventEmitter, Output } from '@angular/core';
+import { Component, forwardRef, Input, EventEmitter, Output, ContentChild, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SharedFunctions } from './shared-functions';
 
 @Component({
-    selector: 'form-input',
+    selector: 'form-input, [formInput]',
     templateUrl: './dexih-form-input.component.html',
     styleUrls: ['./dexih-form.component.scss'],
     providers: [

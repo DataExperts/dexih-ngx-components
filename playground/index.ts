@@ -11,8 +11,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { NgxMdModule } from 'ngx-md';
 import { BsDropdownModule } from 'ngx-bootstrap';
 
-import { DexihComponentsModule }  from 'dexih-ngx-components';
-// import { DexihComponentsModule }  from '../src';
+// import { DexihComponentsModule }  from 'dexih-ngx-components';
+import { DexihComponentsModule }  from '../src';
 
 import { AppComponent} from './app';
 

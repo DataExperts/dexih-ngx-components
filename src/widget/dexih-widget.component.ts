@@ -4,7 +4,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-    selector: 'dexih-widget',
+    selector: 'dexih-widget,div[dexihWidget]',
     templateUrl: './dexih-widget.component.html',
     styleUrls: ['./dexih-widget.component.scss'],
     animations: [
