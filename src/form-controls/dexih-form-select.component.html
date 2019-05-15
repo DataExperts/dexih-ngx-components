@@ -20,6 +20,7 @@
                 class="form-control disabled-input bg-transparent" 
                 [ngClass]="{'border-0': !border, 'is-invalid': errors, 'is-valid': !errors && isDirty, 'font-italic': !selectedItem && textValue }"
                 (focusout)="dropdownHide()"
+                [autocapitalize]="autocapitalize"
                 />
 
             <div class="input-group-append">

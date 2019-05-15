@@ -28,7 +28,13 @@ import { Component, OnInit } from '@angular/core';
 
     public selectedTags = [{key: 1, name: 'item1'}, {key: 3, name: 'item3'}];
 
+    public dynamicItems: string[] = null;
+
     ngOnInit() {
+    }
+
+    public AddItems() {
+        this.dynamicItems = ['item1', 'item2', 'item3'];
     }
 
     public close() {

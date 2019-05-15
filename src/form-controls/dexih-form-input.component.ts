@@ -26,6 +26,7 @@ export class DexihFormInputComponent implements ControlValueAccessor {
     @Input() maxlength: number;
     @Input() disabled = false;
     @Input() border = true;
+    @Input() autocapitalize = 'none';
 
     @Output() keydown: EventEmitter<any> = new EventEmitter<any>();
 

@@ -1,4 +1,4 @@
-    <div class="card" [@fadeInAnimation]='state' removeWrapper>
+    <div class="card" [@fadeInAnimation]='state'>
         <div [ngClass]="['card-header', headerClass]" *ngIf="title || iconClass || headerTemplate || showFilter">
             <div class="d-flex flex-row p-0">
 
@@ -38,7 +38,7 @@
 
         <div [ngClass]="['card-header', subTitleClass]" *ngIf="subTitleTemplate || subTitle || toolsTemplate">
                 <div class="d-flex flex-row">
-                    <div class="card-subtitle">{{subtitle}}</div>
+                    <div class="card-subtitle">{{subTitle}}</div>
                     <ng-template [ngTemplateOutlet]="subTitleTemplate">
                     </ng-template>
                     <div class="d-flex ml-auto">
