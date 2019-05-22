@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, ContentChild, TemplateRef, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({

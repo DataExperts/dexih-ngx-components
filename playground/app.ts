@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DexihToastComponent, ToastMessage } from 'dexih-ngx-components';
 
 @Component({
     selector: 'app-component',
     templateUrl: './app.html'
   })
   export class AppComponent implements OnInit {
+    @ViewChild('toasts') toasts: DexihToastComponent;
 
     public selectedItem0 = 0;
 
@@ -56,4 +58,22 @@ import { Component, OnInit } from '@angular/core';
     public selectChange(value: string) {
       alert('selected - ' + value);
     }
+
+    public addToasts() {
+      this.toasts.add({content: 'This is a success message', title: 'Success', type: 'success', delay: 7000});
+      this.toasts.add({content: 'This is a error message', title: 'Error', type: 'error', delay: 5000});
+      this.toasts.add({content: 'This is a information message', title: 'Information', type: 'info', delay: 6000});
+      this.toasts.add({content: 'This message is huge ' + 'abc '.repeat(200), type: 'info', delay: 6000});
+      this.toasts.add({content: 'This one will never close an can be clicked and return 1', type: 'info', delay: -1,
+        buttonName: 'click me', reference: '1', onButtonClick: (m) => this.toastClick(m) });
+    }
+
+    public addToast(type) {
+      this.toasts.add({content: `This is a ${type} message, that will last for 5 seconds`, title: type, type: type, delay: 5000});
+    }
+
+    public toastClick(message: ToastMessage) {
+      alert('toast click with reference: ' + message.reference );
+    }
+
   }

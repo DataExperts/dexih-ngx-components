@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, EventEmitter, Output, ContentChild, TemplateRef } from '@angular/core';
+import { Component, forwardRef, Input, EventEmitter, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SharedFunctions } from './shared-functions';
 
@@ -40,7 +40,7 @@ export class DexihFormInputComponent implements ControlValueAccessor {
 
     constructor() { }
 
-    hasChanged($event) {
+    hasChanged() {
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;

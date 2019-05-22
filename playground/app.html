@@ -1,3 +1,5 @@
+<dexih-toast #toasts></dexih-toast>
+
 <h3>Widget Vertically</h3>
 
 <div class="p-3 b-3">
@@ -171,6 +173,13 @@ this should have no padding.
 </dexih-widget-vertical>
 
 <dexih-widget-columns class="p-3">
+        <dexih-widget title="Toasts" [padding]="true" >
+            <dexih-button (click)="addToasts()" text="Add Toasts"></dexih-button>
+            <dexih-button (click)="addToast('success')" text="Add Success"></dexih-button>
+            <dexih-button (click)="addToast('error')" text="Add Error"></dexih-button>
+        </dexih-widget>
+            
+
         <dexih-widget title="Progress" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <dexih-progressbar width="100px" class="m-3" [animate]="true" [showCancel]="true" (cancelled)="cancelled()" (progressClick)="progress()"
                 value="90" type="success">
