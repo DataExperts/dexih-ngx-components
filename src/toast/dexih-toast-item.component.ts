@@ -59,6 +59,7 @@ export class DexihToastItemComponent implements OnInit {
 
     onButtonClick() {
         if (this.message.onButtonClick) {
+            this.destroy();
             this.message.onButtonClick(this.message);
         }
     }
