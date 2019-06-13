@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { NgxMdModule } from 'ngx-md';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 import { DexihComponentsModule }  from 'dexih-ngx-components';
 // import { DexihComponentsModule }  from '../src';
@@ -27,6 +27,10 @@ const ROUTES: Route[] = [
   declarations: [
     AppComponent
   ],
+  providers: [
+    BsModalService,
+    BsModalRef
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -34,8 +38,10 @@ const ROUTES: Route[] = [
     RouterModule.forRoot(ROUTES),
     NgxMdModule.forRoot(),
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     DexihComponentsModule,
-  ]
+  ],
+
 })
 class AppModule {}
 

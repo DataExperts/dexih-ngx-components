@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DexihToastComponent, ToastMessage } from 'dexih-ngx-components';
+import { DexihToastComponent, ToastMessage, DexihModalComponent } from 'dexih-ngx-components';
 
 @Component({
     selector: 'app-component',
@@ -7,6 +7,7 @@ import { DexihToastComponent, ToastMessage } from 'dexih-ngx-components';
   })
   export class AppComponent implements OnInit {
     @ViewChild('toasts') toasts: DexihToastComponent;
+    @ViewChild('modal') modal: DexihModalComponent;
 
     public selectedItem0 = 0;
 
@@ -31,6 +32,10 @@ import { DexihToastComponent, ToastMessage } from 'dexih-ngx-components';
     public selectedTags = [{key: 1, name: 'item1'}, {key: 3, name: 'item3'}];
 
     public dynamicItems: string[] = null;
+
+    public modalInformationValue: string;
+    public modalConfirmValue: string;
+    public modalPromptValue: string;
 
     ngOnInit() {
     }
@@ -74,6 +79,24 @@ import { DexihToastComponent, ToastMessage } from 'dexih-ngx-components';
 
     public toastClick(message: ToastMessage) {
       alert('toast click with reference: ' + message.reference );
+    }
+
+    public modalInformation() {
+      this.modal.information('Information', 'Some important info', 'Okey dokey').then(result => {
+        this.modalInformationValue = 'ok';
+      }).catch(() => this.modalInformationValue = 'should never happen');
+    }
+
+    public modalConfirm() {
+      this.modal.confirm('Confirm', 'Do you want to do this <b>bold test<b>', 'Do it', 'escape...').then(result => {
+        this.modalConfirmValue = 'confirmed';
+      }).catch(() => this.modalConfirmValue = 'cancelled');
+    }
+
+    public modalPrompt() {
+      this.modal.prompt('Prompt', 'Tell me something', 'The Value:', 'save', 'quit').then(result => {
+        this.modalPromptValue = result;
+      }).catch(() => this.modalPromptValue = 'cancelled');
     }
 
   }

@@ -7,3 +7,4 @@ export * from './form-controls/index';
 export * from './progress/index';
 export * from './utils/index';
 export * from './toast/index';
+export * from './modal/index';

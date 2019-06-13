@@ -1,4 +1,5 @@
 <dexih-toast #toasts></dexih-toast>
+<dexih-modal #modal></dexih-modal>
 
 <h3>Widget Vertically</h3>
 
@@ -178,7 +179,21 @@ this should have no padding.
             <dexih-button (click)="addToast('success')" text="Add Success"></dexih-button>
             <dexih-button (click)="addToast('error')" text="Add Error"></dexih-button>
         </dexih-widget>
-            
+
+        <dexih-widget title="Modals" [padding]="true" >
+            <div class="row">
+                <dexih-button (click)="modalInformation()" text="Information"></dexih-button>
+                Result: {{modalInformationValue}}
+            </div>
+            <div class="row">
+                <dexih-button (click)="modalConfirm()" text="Confirm"></dexih-button>
+                Result: {{modalConfirmValue}}
+            </div>
+            <div class="row">
+                <dexih-button (click)="modalPrompt()" text="Prompt"></dexih-button>
+                Result: {{modalPromptValue}}
+            </div>
+            </dexih-widget>
 
         <dexih-widget title="Progress" [padding]="true" iconClass="fa fa-lg fa-fw fa-database">
             <dexih-progressbar width="100px" class="m-3" [animate]="true" [showCancel]="true" (cancelled)="cancelled()" (progressClick)="progress()"
