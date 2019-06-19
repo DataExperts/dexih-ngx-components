@@ -43,8 +43,8 @@ export class DexihFormSelectComponent implements ControlValueAccessor, OnInit, O
     @Output() textValueChange = new EventEmitter();
     @Input() autocapitalize = 'none';
 
-    @ViewChild(BsDropdownDirective) dropdown: BsDropdownDirective;
-    @ViewChild('dropdown') dropdownElement: any;
+    @ViewChild(BsDropdownDirective, { static: true }) dropdown: BsDropdownDirective;
+    @ViewChild('dropdown', { static: true }) dropdownElement: any;
 
     id = 'input_' + Math.random().toString(36).substr(2, 9);
     sharedFunctions = new SharedFunctions();

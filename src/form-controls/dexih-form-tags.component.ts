@@ -35,21 +35,21 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
 
     constructor() { }
 
-    hasChanged($event) {
+    hasChanged() {
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string[]) {
         // if (value) {
             this.value = value;
         // }
@@ -62,29 +62,29 @@ export class DexihFormTagsComponent implements ControlValueAccessor {
             if (index === -1) {
                 this.value.push(this.tag);
                 this.tag = '';
-                this.hasChanged(null);
+                this.hasChanged();
             }
         }
     }
 
-    keydownEvent($event) {
+    keydownEvent($event: any) {
         if ( $event.keyCode === 13) {
             this.addTag();
         }
     }
 
-    remove(item) {
+    remove(item: any) {
         if (!this.value) { return; }
         const index = this.value.findIndex(c => c === item);
         if (index >= 0) {
             this.value.splice(index, 1);
-            this.hasChanged(null);
+            this.hasChanged();
         }
     }
 
     // detect a click outside the control, and add the tag
     @HostListener('document:click', ['$event.target'])
-    public onClick(targetElement) {
+    public onClick(targetElement: any) {
         this.addTag();
     }
 }

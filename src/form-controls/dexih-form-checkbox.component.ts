@@ -24,21 +24,21 @@ export class DexihFormCheckboxComponent implements ControlValueAccessor {
 
     constructor() { }
 
-    hasChanged($event) {
+    hasChanged($even: any) {
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: boolean) {
         this.value = value;
     }
 }

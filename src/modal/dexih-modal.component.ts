@@ -6,7 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
     templateUrl: './dexih-modal.component.html',
 })
 export class DexihModalComponent implements OnInit {
-    @ViewChild('template') template: any ;
+    @ViewChild('template', { static: true }) template: any ;
 
     modalRef: BsModalRef;
 

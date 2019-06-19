@@ -22,7 +22,7 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     @Input() subLabel: string;
     @Input() maxlength: number;
     @Input() items: Array<any>;
-    @Input() itemKey;
+    @Input() itemKey: any;
     @Input() itemName: string;
     @Input() itemTitle: string;
     @Input() sortItems = false;
@@ -30,8 +30,8 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
     @Input() enableAddAll = false;
     @Input() returnKeys = false;
 
-    @ViewChild(BsDropdownDirective) dropdown: BsDropdownDirective;
-    @ViewChild('dropdown') dropdownElement;
+    @ViewChild(BsDropdownDirective, { static: true }) dropdown: BsDropdownDirective;
+    @ViewChild('dropdown', { static: true }) dropdownElement: any;
 
     isDirty = false;
 
@@ -53,21 +53,21 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
         this.writeValue(this.value);
     }
 
-    hasChanged($event) {
+    hasChanged() {
         this.onChange(this.value);
         this.onTouched();
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string[]) {
         this.value = value;
         this.updateLabels();
     }
@@ -144,11 +144,11 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
         }
     }
 
-    remove(index) {
+    remove(index: number) {
         if (index >= 0 && this.value) {
             this.value.splice(index, 1);
             this.labels.splice(index, 1);
-            this.hasChanged(null);
+            this.hasChanged();
         }
     }
 
@@ -160,19 +160,19 @@ export class DexihFormTagsDropdownComponent implements ControlValueAccessor, OnC
         }
 
         this.labels = this.sortedItems.map(c => c.label);
-        this.hasChanged(null);
+        this.hasChanged();
         this.dropdown.hide();
     }
 
     clearAll() {
         this.value = [];
         this.labels = [];
-        this.hasChanged(null);
+        this.hasChanged();
     }
 
     // detect a click outside the control, and hide the dropdown
     @HostListener('document:click', ['$event.target'])
-    public onClick(targetElement) {
+    public onClick(targetElement: any) {
         if (this.dropdown.isOpen) {
             const clickedInside = this.dropdownElement.nativeElement.contains(targetElement);
             if (!clickedInside) {

@@ -56,11 +56,11 @@ export class DexihWidgetComponent implements OnInit {
 
     @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
-    @ContentChild('tools') toolsTemplate: TemplateRef<any>;
-    @ContentChild('header') headerTemplate: TemplateRef<any>;
-    @ContentChild('subTitle') subTitleTemplate: TemplateRef<any>;
-    @ContentChild('subHeader') subHeaderTemplate: TemplateRef<any>;
-    @ContentChild('footer') footerTemplate: TemplateRef<any>;
+    @ContentChild('tools', { static: true }) toolsTemplate: TemplateRef<any>;
+    @ContentChild('header', { static: true }) headerTemplate: TemplateRef<any>;
+    @ContentChild('subTitle', { static: true }) subTitleTemplate: TemplateRef<any>;
+    @ContentChild('subHeader', { static: true }) subHeaderTemplate: TemplateRef<any>;
+    @ContentChild('footer', { static: true }) footerTemplate: TemplateRef<any>;
 
     filterControl = new FormControl();
 

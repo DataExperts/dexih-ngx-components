@@ -54,26 +54,26 @@ export class DexihFormTextAreaComponent implements OnInit, ControlValueAccessor 
         // this.state = this.isHidden ? 'hide' : 'show';
      }
 
-    hasChanged($event) {
+    hasChanged() {
         this.onChange(this.value);
         this.onTouched();
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string) {
         if (value) {
             this.value = value;
         }
     }
 
-    getRoute(event) {
+    getRoute(event: any) {
         let isLink = this.sharedFunctions.getRoute(event);
 
         // if a link was not selected, then open the edit.

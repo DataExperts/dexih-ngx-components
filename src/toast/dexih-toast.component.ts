@@ -24,7 +24,7 @@ import { trigger, style, transition, animate } from '@angular/animations';
 })
 export class DexihToastComponent implements OnInit {
     @Input() maxMessages = 5;
-    @ViewChild('toastContainer', { read: ViewContainerRef }) toastContainer: ViewContainerRef;
+    @ViewChild('toastContainer', {static: true, read: ViewContainerRef }) toastContainer: ViewContainerRef;
 
     public messages: ToastComponent[] = [];
 

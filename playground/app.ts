@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DexihToastComponent, ToastMessage, DexihModalComponent } from 'dexih-ngx-components';
+import { DexihToastComponent, ToastMessage, DexihModalComponent } from '../src';
 
 @Component({
     selector: 'app-component',
     templateUrl: './app.html'
   })
   export class AppComponent implements OnInit {
-    @ViewChild('toasts') toasts: DexihToastComponent;
-    @ViewChild('modal') modal: DexihModalComponent;
+    @ViewChild('toasts', { static: true }) toasts: DexihToastComponent;
+    @ViewChild('modal', { static: true }) modal: DexihModalComponent;
 
     public selectedItem0 = 0;
 
@@ -65,16 +65,17 @@ import { DexihToastComponent, ToastMessage, DexihModalComponent } from 'dexih-ng
     }
 
     public addToasts() {
-      this.toasts.add({content: 'This is a success message', title: 'Success', type: 'success', delay: 7000});
-      this.toasts.add({content: 'This is a error message', title: 'Error', type: 'error', delay: 5000});
-      this.toasts.add({content: 'This is a information message', title: 'Information', type: 'info', delay: 6000});
-      this.toasts.add({content: 'This message is huge ' + 'abc '.repeat(200), type: 'info', delay: 6000});
-      this.toasts.add({content: 'This one will never close an can be clicked and return 1', type: 'info', delay: -1,
+      this.toasts.add(new ToastMessage('success', 'Success', 'This is a success message', 7000));
+      this.toasts.add(new ToastMessage('info', 'Information', 'This is a information message', 5000));
+      this.toasts.add(new ToastMessage('error', 'Error', 'This is an error message', 6000));
+      this.toasts.add(new ToastMessage('success', 'Huge', 'This message is huge ' + 'abc '.repeat(200), 7000));
+      this.toasts.add({content: 'This one will never close an can be clicked and return 1',
+        title: 'clicker', type: 'info', delay: -1,
         buttonName: 'click me', reference: '1', onButtonClick: (m) => this.toastClick(m) });
     }
 
-    public addToast(type) {
-      this.toasts.add({content: `This is a ${type} message, that will last for 5 seconds`, title: type, type: type, delay: 5000});
+    public addToast(type: 'success' | 'info' | 'error') {
+      this.toasts.add(new ToastMessage(type, 'Huge', 'This is a ${type} message, that will last for 5 seconds', 5000));
     }
 
     public toastClick(message: ToastMessage) {

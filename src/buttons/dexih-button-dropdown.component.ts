@@ -24,7 +24,7 @@ export class DexihButtonDropDownComponent {
 
     @Output() isOpenChange = new EventEmitter<any>();
 
-    @ViewChild('dropdown') dropdown: BsDropdownDirective;
+    @ViewChild('dropdown', { static: true }) dropdown: BsDropdownDirective;
 
     constructor() { }
 

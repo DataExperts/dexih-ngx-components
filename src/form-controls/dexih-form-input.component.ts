@@ -46,15 +46,15 @@ export class DexihFormInputComponent implements ControlValueAccessor {
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string) {
         this.value = value;
     }
 
@@ -62,7 +62,7 @@ export class DexihFormInputComponent implements ControlValueAccessor {
         this.disabled = isDisabled;
     }
 
-    keydownEvent($event) {
+    keydownEvent($event: any) {
         this.keydown.emit($event);
     }
 }

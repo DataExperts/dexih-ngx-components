@@ -35,7 +35,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
 
      }
 
-    hasChanged($event) {
+    hasChanged($event: any) {
         this.valueToDate();
 
         this.onChange(this.value);
@@ -43,7 +43,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
         this.isDirty = true;
     }
 
-    dateChanged($event) {
+    dateChanged($event: any) {
         if (this.dateValue) {
             this.dateToValue();
         } else {
@@ -63,7 +63,7 @@ export class DexihFormDateComponent implements ControlValueAccessor {
         }
     }
 
-    pad(num, size) {
+    pad(num: number, size: number) {
         let s = '000000000' + num;
         return s.substr(s.length - size);
     }
@@ -77,15 +77,15 @@ export class DexihFormDateComponent implements ControlValueAccessor {
         }
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string) {
         if (value) {
             this.value = value;
             this.valueToDate();

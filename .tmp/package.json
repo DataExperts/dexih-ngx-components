@@ -1,0 +1,34 @@
+{
+  "name": "dexih-ngx-components",
+  "version": "0.2.52",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DataExperts/dexih-ngx-components"
+  },
+  "author": {
+    "name": "Gary Holland",
+    "email": "gholland@dataexpertsgroup.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DataExperts/dexih-ngx-components/issues"
+  },
+  "main": "dexih-ngx-components.umd.js",
+  "module": "dexih-ngx-components.js",
+  "jsnext:main": "dexih-ngx-components.js",
+  "typings": "dexih-ngx-components.d.ts",
+  "peerDependencies": {
+    "@angular/core": ">= 6.0.0",
+    "@angular/common": ">= 6.0.0",
+    "@angular/forms": ">= 6.0.0",
+    "@angular/router": ">= 6.0.0",
+    "@angular/animations": ">= 6.0.0",
+    "rxjs": ">= 6.2.0",
+    "zone.js": ">= 0.8.14",
+    "ngx-md": ">= 6.0.0",
+    "ngx-bootstrap": ">= 3.0.0"
+  }
+}

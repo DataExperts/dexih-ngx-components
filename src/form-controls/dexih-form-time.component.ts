@@ -50,7 +50,7 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
         this._changeDetectionRef.detectChanges();
     }
 
-    hasChanged($event) {
+    hasChanged() {
         this.value = this.hours + ':' + this.minutes + ':' + this.seconds;
 
         this.onChange(this.value);
@@ -59,15 +59,15 @@ export class DexihFormTimeComponent implements AfterViewInit, ControlValueAccess
         this.isDirty = true;
     }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn) {
+    registerOnTouched(fn: any) {
         this.onTouched = fn;
     }
 
-    writeValue(value) {
+    writeValue(value: string) {
         if (value) {
             this.value = value;
         }
